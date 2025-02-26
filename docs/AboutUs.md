@@ -13,12 +13,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/datletu.png" width="200px">
 
+
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[github](https://github.com/johndoe)]
+[[portfolio](team/jodie)]
+
 [[github](https://github.com/datletu)]
 [[portfolio](team/leTuQuocDat.md)]
+
 
 add-letuquocdat-info
 * Role: Project Developer
 * Responsibilities: UI
+
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/jodie)]
+
 
 
 * Role: Project Advisor
@@ -26,6 +37,9 @@ add-letuquocdat-info
 ### Duong Ngoc Mai
 
 <img src="images/mai.png" width="200px">
+
+
+[[github](http://github.com/johndoe)] [[portfolio](team/jodie)]
 
 [[github](https://github.com/vrisdng)]
 [[portfolio](team/mai.md)]
@@ -37,8 +51,13 @@ add-letuquocdat-info
 
 <img src="images/lilduckling.png" width="200px">
 
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/jodie)]
+
 [[github](http://github.com/lilduckling)]
 [[portfolio](team/duc.md)]
+
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -50,5 +69,10 @@ add-letuquocdat-info
 
 [[github](http://github.com/jodielzy)]
 [[portfolio](team/jodie.md)]
+
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/jodie)]
+
 
 
