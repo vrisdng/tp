@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Mai's Project Portfolio Page
+title: Duc's Project Portfolio Page
 ---
 
 ### Project: LMAO LMAO SKIBIDI
