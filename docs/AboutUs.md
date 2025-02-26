@@ -9,44 +9,40 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Le Tu Quoc Dat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/datletu.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/datletu)]
+[[portfolio](team/leTuQuocDat.md)]
+
+add-letuquocdat-info
+* Role: Project Developer
+* Responsibilities: UI
+
 
 * Role: Project Advisor
 
-### Jane Doe
+### Duong Ngoc Mai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/vrisdng)]
+[[portfolio](team/mai.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Management + Code
 
-### Jean Doe
+### Nguyen Anh Duc
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lilduckling.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lilduckling)]
+[[portfolio](team/duc.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
+
 
 ### Jodie
 
@@ -55,5 +51,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jodielzy)]
 [[portfolio](team/jodie.md)]
 
-* Role: Developer
-* Responsibilities: UI
+
