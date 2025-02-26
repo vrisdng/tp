@@ -9,13 +9,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Le Tu Quoc Dat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/datletu.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/datletu)]
+[[portfolio](team/leTuQuocDat.md)]
+
+add-letuquocdat-info
+* Role: Project Developer
+* Responsibilities: UI
+
 
 * Role: Project Advisor
 
@@ -47,4 +51,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
+
 
