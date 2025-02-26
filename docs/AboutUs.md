@@ -33,15 +33,6 @@ add-letuquocdat-info
 * Role: Developer
 * Responsibilities: Management + Code
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
 ### Nguyen Anh Duc
 
 <img src="images/lilduckling.png" width="200px">
@@ -51,5 +42,13 @@ add-letuquocdat-info
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
+
+
+### Jodie
+
+<img src="images/jodielzy.png" width="200px">
+
+[[github](http://github.com/jodielzy)]
+[[portfolio](team/jodie.md)]
 
 
