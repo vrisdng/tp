@@ -18,6 +18,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -33,7 +34,7 @@ public class SampleDataUtil {
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Remark("Likes to play tennis"),
                 getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),new Remark("Likes to play badminton"),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new Remark("Likes to play badminton"),
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Remark("Likes to play soccer"),
@@ -57,5 +58,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
