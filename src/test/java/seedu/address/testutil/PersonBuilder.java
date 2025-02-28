@@ -8,9 +8,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.model.person.Remark;
 
 /**
  * A utility class to help with building Person objects.
@@ -28,6 +28,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Remark remark;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
