@@ -27,5 +27,5 @@ public class RemarkCommandParser {
         Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
 
         return new RemarkCommand(index, remark);
-    }    
+    }
 }
