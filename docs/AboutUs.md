@@ -5,9 +5,13 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e1155383@u.nus.edu`
 
 ## Project team
+
+
+* Role: Project Developer
+* Responsibilities: UI
 
 ### Le Tu Quoc Dat
 
@@ -15,21 +19,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/jodie)]
 
 [[github](https://github.com/datletu)]
 [[portfolio](team/leTuQuocDat.md)]
-
-
-add-letuquocdat-info
-* Role: Project Developer
-* Responsibilities: UI
-
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jodie)]
-
 
 
 * Role: Project Advisor
@@ -39,10 +31,9 @@ add-letuquocdat-info
 <img src="images/mai.png" width="200px">
 
 
-[[github](http://github.com/johndoe)] [[portfolio](team/jodie)]
-
 [[github](https://github.com/vrisdng)]
 [[portfolio](team/mai.md)]
+
 
 * Role: Developer
 * Responsibilities: Management + Code
@@ -50,10 +41,6 @@ add-letuquocdat-info
 ### Nguyen Anh Duc
 
 <img src="images/lilduckling.png" width="200px">
-
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jodie)]
 
 [[github](http://github.com/lilduckling)]
 [[portfolio](team/duc.md)]
@@ -70,9 +57,6 @@ add-letuquocdat-info
 [[github](http://github.com/jodielzy)]
 [[portfolio](team/jodie.md)]
 
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jodie)]
 
 
 
