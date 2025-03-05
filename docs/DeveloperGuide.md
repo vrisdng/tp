@@ -1,3 +1,8 @@
+---
+layout: page
+title: Developer Guide
+---
+
 # conTActs Developer Guide
 
 ## Target User Profile
@@ -62,3 +67,4 @@ conTActs helps TAs efficiently organize and manage student information, reducing
 - **Student Profile:** A record containing a student's personal, academic, and contact information.
 - **Tag:** A keyword or label assigned to a student for categorization.
 - **Course Assignment:** The process of linking a student to a specific course in the system.
+
