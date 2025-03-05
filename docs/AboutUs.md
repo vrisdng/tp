@@ -28,7 +28,7 @@ You can reach us at the email `e1155383@u.nus.edu`
 
 ### Duong Ngoc Mai
 
-<img src="images/mai.png" width="200px">
+<img src="images/vrisdng.png" width="200px">
 
 
 [[github](https://github.com/vrisdng)]
