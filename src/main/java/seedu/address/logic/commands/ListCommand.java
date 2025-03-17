@@ -13,6 +13,7 @@ import seedu.address.ui.DisplayPreferences;
  */
 public class ListCommand extends Command {
 
+    // Command word for ListCommand
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
@@ -28,6 +29,9 @@ public class ListCommand extends Command {
     private final boolean showStudentId;
     private final boolean showTags;
 
+    /**
+     * Creates a ListCommand to list all persons with the specified display preferences.
+     */
     public ListCommand(boolean showName, boolean showPhone, boolean showEmail, boolean showAddress,
                        boolean showStudentId, boolean showTags) {
         this.showName = showName;
