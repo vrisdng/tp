@@ -1,7 +1,12 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Student's ID in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStudentId(String)}
+ */
 public class StudentId {
-    public static final String MESSAGE_CONSTRAINTS = "Student IDs should be numeric and exactly 8 digits long";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Student IDs should start with 'A' followed by 7 digits and a letter.";
     public final String value;
 
     /**
@@ -18,9 +23,10 @@ public class StudentId {
 
     /**
      * Returns true if a given string is a valid student ID.
+     * This program assumes that the student is from NUS so the student ID must start with 'A'.
      */
     public static boolean isValidStudentId(String test) {
-        return true;
+        return test.matches("A\\d{7}[A-Z]");
     }
 
     @Override
