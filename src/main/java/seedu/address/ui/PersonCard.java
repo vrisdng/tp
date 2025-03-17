@@ -50,13 +50,44 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        studentId.setText(person.getStudentId().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        // Conditionally display fields based on DisplayPreferences
+        if (DisplayPreferences.isShowName()) {
+            name.setText(person.getName().fullName);
+        } else {
+            name.setVisible(false);
+        }
+
+        if (DisplayPreferences.isShowPhone()) {
+            phone.setText(person.getPhone().value);
+        } else {
+            phone.setVisible(false);
+        }
+
+        if (DisplayPreferences.isShowEmail()) {
+            email.setText(person.getEmail().value);
+        } else {
+            email.setVisible(false);
+        }
+
+        if (DisplayPreferences.isShowAddress()) {
+            address.setText(person.getAddress().value);
+        } else {
+            address.setVisible(false);
+        }
+
+        if (DisplayPreferences.isShowStudentId()) {
+            studentId.setText(person.getStudentId().value);
+        } else {
+            studentId.setVisible(false);
+        }
+
+        if (DisplayPreferences.isShowTags()) {
+            tags.getChildren().clear();
+            person.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tags.setVisible(false);
+        }
     }
 }
