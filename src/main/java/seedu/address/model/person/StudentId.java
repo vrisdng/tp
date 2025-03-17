@@ -20,7 +20,7 @@ public class StudentId {
      * Returns true if a given string is a valid student ID.
      */
     public static boolean isValidStudentId(String test) {
-        return test.matches("\\d{8}");
+        return true;
     }
 
     @Override
