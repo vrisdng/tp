@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -42,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label studentId;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane tutorials;
 
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
@@ -89,6 +92,17 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (!DisplayPreferences.isShowTags()) {
             tags.setVisible(false);
+        }
+
+        // Handle tutorials: join tutorial names by commas.
+        tutorials.getChildren().clear();
+        String tutorialText = person.getTutorials().stream()
+                .sorted(Comparator.comparing(tutorial -> tutorial.tutorialName))
+                .map(tutorial -> tutorial.tutorialName)
+                .collect(Collectors.joining(", "));
+        tutorials.getChildren().add(new Label(tutorialText));
+        if (!DisplayPreferences.isShowTutorials()) {
+            tutorials.setVisible(false);
         }
     }
 

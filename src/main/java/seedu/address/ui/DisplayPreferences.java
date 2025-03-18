@@ -12,6 +12,7 @@ public class DisplayPreferences {
     private static boolean showAddress = true;
     private static boolean showStudentId = true;
     private static boolean showTags = true;
+    private static boolean showTutorials = true;
 
     // Getters and setters
     public static boolean isShowName() {
@@ -60,5 +61,13 @@ public class DisplayPreferences {
 
     public static void setShowTags(boolean showTags) {
         DisplayPreferences.showTags = showTags;
+    }
+
+    public static boolean isShowTutorials() {
+        return showTutorials;
+    }
+
+    public static void setShowTutorials(boolean showTutorials) {
+        DisplayPreferences.showTutorials = showTutorials;
     }
 }
