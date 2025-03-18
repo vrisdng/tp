@@ -49,39 +49,39 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-    
+
         id.setText(displayedIndex + ". ");
-        
+
         // Always set the text for the name label
         name.setText(person.getName().fullName);
         if (!DisplayPreferences.isShowName()) {
             name.setVisible(false);
         }
-    
+
         // Always set the text for the phone label
         phone.setText(person.getPhone().value);
         if (!DisplayPreferences.isShowPhone()) {
             phone.setVisible(false);
         }
-    
+
         // Always set the text for the email label
         email.setText(person.getEmail().value);
         if (!DisplayPreferences.isShowEmail()) {
             email.setVisible(false);
         }
-    
+
         // Always set the text for the address label
         address.setText(person.getAddress().value);
         if (!DisplayPreferences.isShowAddress()) {
             address.setVisible(false);
         }
-    
+
         // Always set the text for the studentId label
         studentId.setText(person.getStudentId().value);
         if (!DisplayPreferences.isShowStudentId()) {
             studentId.setVisible(false);
         }
-    
+
         // Handle tags
         tags.getChildren().clear();
         person.getTags().stream()
@@ -91,4 +91,5 @@ public class PersonCard extends UiPart<Region> {
             tags.setVisible(false);
         }
     }
+
 }
