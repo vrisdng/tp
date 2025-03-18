@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENT_ID_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -141,6 +142,8 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        System.out.println("DEBUG: Expected Model (state): " + expectedModel.getAddressBook());
+        System.out.println("DEBUG: Actual Model (state): " + model.getAddressBook());
         assertEquals(expectedModel, model);
     }
 
@@ -168,12 +171,17 @@ public class LogicManagerTest {
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
-        System.out.println(AddCommand.COMMAND_WORD);
+        // Triggers the saveAddressBook method by executing an add command.
+        // Add tutorial descriptor so that the parsed person includes tutorials.
         String addCommand = "add " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + STUDENT_ID_DESC_AMY;
+                + STUDENT_ID_DESC_AMY + TUTORIAL_DESC_AMY;
 
-        Person expectedPerson = new PersonBuilder(AMY).withStudentId(VALID_STUDENT_ID_AMY).withTags().build();
+        // Changed: Include the tutorial in building the expected person.
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withStudentId(VALID_STUDENT_ID_AMY)
+                .withTags()
+                .withTutorials("CS2103T") // new tutorial added to expected person
+                .build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

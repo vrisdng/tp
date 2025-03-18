@@ -12,6 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -92,8 +93,12 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptorBuilder withTutorials(String... tutorialNames) {
-        Set<String> tutorialSet = Stream.of(tutorialNames).collect(Collectors.toSet());
+    /**
+     * Parses the {@code tutorials} into a {@code Set<Tutorial>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withTutorials(String... tutorials) {
+        Set<Tutorial> tutorialSet = Stream.of(tutorials).map(Tutorial::new).collect(Collectors.toSet());
         descriptor.setTutorials(tutorialSet);
         return this;
     }

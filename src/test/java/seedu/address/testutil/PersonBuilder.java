@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDENT_ID = "A1234567X";
+    public static final String DEFAULT_TUTORIAL = "CS2103T";
 
     private Name name;
     private Phone phone;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private StudentId studentId;
+    private Set<Tutorial> tutorials;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         studentId = new StudentId(DEFAULT_STUDENT_ID);
+        tutorials = new HashSet<>();
+        tutorials.add(new Tutorial(DEFAULT_TUTORIAL));
     }
 
     /**
@@ -52,6 +57,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         studentId = personToCopy.getStudentId();
+        tutorials = new HashSet<>(personToCopy.getTutorials());
     }
 
     /**
@@ -102,8 +108,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tutorials} into a {@code Set<Tutorial>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTutorials(String ... tutorials) {
+        this.tutorials = SampleDataUtil.getTutorialSet(tutorials);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, studentId);
+        return new Person(name, phone, email, address, tags, studentId, tutorials);
     }
 
 }

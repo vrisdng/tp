@@ -28,20 +28,20 @@ public class TutorialTest {
     }
 
     @Test
-    public void isValidTutorialName() {
+    public void isValidTutorial() {
         // null tutorial name
-        assertThrows(NullPointerException.class, () -> Tutorial.isValidTutorialName(null));
+        assertThrows(NullPointerException.class, () -> Tutorial.isValidTutorial(null));
 
         // invalid tutorial names
-        assertFalse(Tutorial.isValidTutorialName("")); // empty string
-        assertFalse(Tutorial.isValidTutorialName(" ")); // spaces only
-        assertFalse(Tutorial.isValidTutorialName("CS2103T!")); // special characters
-        assertFalse(Tutorial.isValidTutorialName("CS 2103T")); // spaces between words
+        assertFalse(Tutorial.isValidTutorial("")); // empty string
+        assertFalse(Tutorial.isValidTutorial(" ")); // spaces only
+        assertFalse(Tutorial.isValidTutorial("CS2103T!")); // special characters
+        assertFalse(Tutorial.isValidTutorial("CS 2103T")); // spaces between words
 
         // valid tutorial names
-        assertTrue(Tutorial.isValidTutorialName("CS2103T"));
-        assertTrue(Tutorial.isValidTutorialName("T123"));
-        assertTrue(Tutorial.isValidTutorialName("COMP1010"));
+        assertTrue(Tutorial.isValidTutorial("CS2103T"));
+        assertTrue(Tutorial.isValidTutorial("T123"));
+        assertTrue(Tutorial.isValidTutorial("COMP1010"));
     }
 
     @Test
