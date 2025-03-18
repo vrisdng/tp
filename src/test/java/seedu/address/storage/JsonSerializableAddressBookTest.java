@@ -26,8 +26,7 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        // Compare string representations so that tutorials field is included in the comparison.
-        assertEquals(typicalPersonsAddressBook.toString(), addressBookFromFile.toString());
+        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
     @Test
