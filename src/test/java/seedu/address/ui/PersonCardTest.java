@@ -23,11 +23,13 @@ import seedu.address.model.tag.Tag;
 
 public class PersonCardTest {
 
+    private static boolean isJavaFxInitialized = false;
+
     @BeforeAll
     public static void setUpJavaFx() {
-        // Initialize JavaFX toolkit
-        if (!Platform.isFxApplicationThread()) {
+        if (!isJavaFxInitialized) {
             Platform.startup(() -> {});
+            isJavaFxInitialized = true;
         }
     }
 
