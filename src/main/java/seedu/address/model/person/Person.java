@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial; 
 
 /**
  * Represents a Person in the address book.
@@ -25,11 +26,12 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tutorial> tutorials = new HashSet<>(); 
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, StudentId studentId) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, StudentId studentId, Set<Tutorial> tutorials) {
         requireAllNonNull(name, phone, email, address, tags, studentId);
         this.name = name;
         this.phone = phone;
@@ -37,6 +39,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.studentId = studentId;
+        this.tutorials.addAll(tutorials);
     }
 
     public Name getName() {
@@ -65,6 +68,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable tutorial set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tutorial> getTutorials() {
+        return Collections.unmodifiableSet(tutorials);
     }
 
     /**
@@ -101,13 +112,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && studentId.equals(otherPerson.studentId);
+                && studentId.equals(otherPerson.studentId)
+                && tutorials.equals(otherPerson.tutorials);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, studentId);
+        return Objects.hash(name, phone, email, address, tags, studentId, tutorials);
     }
 
     @Override
@@ -119,6 +131,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("studentId", studentId)
+                .add("tutorials", tutorials)
                 .toString();
     }
 
