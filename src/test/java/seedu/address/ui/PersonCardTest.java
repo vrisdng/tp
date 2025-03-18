@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -36,7 +37,7 @@ public class PersonCardTest {
             new Phone("12345678"),
             new Email("johndoe@example.com"),
             new Address("123 Main Street"),
-            Set.of(new Tag("friend")),
+            new HashSet<>(Set.of(new Tag("friend"))), // Use a mutable set
             new StudentId("A1234567X")
         );
 
@@ -60,7 +61,7 @@ public class PersonCardTest {
             new Phone("12345678"),
             new Email("johndoe@example.com"),
             new Address("123 Main Street"),
-            Set.of(new Tag("friend")),
+            new HashSet<>(Set.of(new Tag("friend"))), // Use a mutable set
             new StudentId("A1234567X")
         );
 
