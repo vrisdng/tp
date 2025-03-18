@@ -10,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -19,16 +20,17 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the index number used in the displayed students list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the student identified by the Student ID used in the displayed students list.\n"
+            + "Parameters: Student ID (Student IDs should start with 'A' followed by 7 digits and a letter.)\n"
+            + "Example: " + COMMAND_WORD + " A1234567X";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student with ID %1$s not found!";
 
-    private final Index targetIndex;
+    private final StudentId targetStudentId;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(StudentId targetStudentId) {
+        this.targetStudentId = targetStudentId;
     }
 
     @Override
@@ -36,11 +38,16 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        // Find the person with the matching StudentId.
+        Person personToDelete = lastShownList.stream()
+                .filter(person -> person.getStudentId().equals(targetStudentId))
+                .findFirst()
+                .orElse(null);
+
+        if (personToDelete == null) {
+            throw new CommandException(String.format(MESSAGE_STUDENT_NOT_FOUND, targetStudentId));
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
@@ -57,13 +64,13 @@ public class DeleteCommand extends Command {
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        return targetStudentId.equals(otherDeleteCommand.targetStudentId);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
+                .add("targetStudentId", targetStudentId)
                 .toString();
     }
 }
