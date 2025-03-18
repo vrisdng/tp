@@ -36,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                    PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL); 
+                    PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -51,9 +51,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Tutorial> tutorials = ParserUtil.parseTutorials(argMultimap.getAllValues(PREFIX_TUTORIAL)); 
+        Set<Tutorial> tutorials = ParserUtil.parseTutorials(argMultimap.getAllValues(PREFIX_TUTORIAL));
 
-        Person person = new Person(name, phone, email, address, tagList, studentId, tutorials); 
+        Person person = new Person(name, phone, email, address, tagList, studentId, tutorials);
 
         return new AddCommand(person);
     }

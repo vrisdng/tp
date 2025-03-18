@@ -26,7 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Tutorial> tutorials = new HashSet<>(); 
+    private final Set<Tutorial> tutorials = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -129,9 +129,9 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags) 
+                .add("tags", tags)
                 .add("studentId", studentId)
-                .add("tutorials", tutorials) 
+                .add("tutorials", tutorials)
                 .toString();
     }
 

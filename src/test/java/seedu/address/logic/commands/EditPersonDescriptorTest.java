@@ -63,9 +63,10 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tutorials -> returns false
-        /* 
+        /*
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTutorials(VALID_TUTORIALS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy)); */ 
+        assertFalse(DESC_AMY.equals(editedAmy));
+        */
     }
 
     @Test
