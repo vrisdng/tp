@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -106,7 +105,8 @@ public class DeleteCommandTest {
     public void toStringMethod() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(firstPerson.getStudentId());
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetStudentId=" + firstPerson.getStudentId() + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetStudentId=" +
+                firstPerson.getStudentId() + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
