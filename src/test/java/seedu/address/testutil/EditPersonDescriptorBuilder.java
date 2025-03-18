@@ -39,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setStudentId(person.getStudentId());
         descriptor.setTags(person.getTags());
+        descriptor.setTutorials(person.getTutorials());
     }
 
     /**
@@ -88,6 +89,12 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withTutorials(String... tutorialNames) {
+        Set<String> tutorialSet = Stream.of(tutorialNames).collect(Collectors.toSet());
+        descriptor.setTutorials(tutorialSet);
         return this;
     }
 

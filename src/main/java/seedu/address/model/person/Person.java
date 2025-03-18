@@ -129,9 +129,9 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
+                .add("tags", tags) 
                 .add("studentId", studentId)
-                .add("tutorials", tutorials)
+                .add("tutorials", tutorials) 
                 .toString();
     }
 
