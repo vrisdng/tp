@@ -74,4 +74,23 @@ public class ListCommandTest {
         assert !DisplayPreferences.isShowStudentId();
         assert !DisplayPreferences.isShowTags();
     }
+
+    @Test
+    public void execute_emptyAddressBook_showsEmptyList() {
+        // Set up an empty model
+        model = new ModelManager();
+        expectedModel = new ModelManager();
+
+        // Execute the command
+        ListCommand listCommand = new ListCommand(true, true, true, true, true, true);
+        assertCommandSuccess(listCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+
+        // Verify DisplayPreferences are updated correctly
+        assert DisplayPreferences.isShowName();
+        assert DisplayPreferences.isShowPhone();
+        assert DisplayPreferences.isShowEmail();
+        assert DisplayPreferences.isShowAddress();
+        assert DisplayPreferences.isShowStudentId();
+        assert DisplayPreferences.isShowTags();
+    }
 }
