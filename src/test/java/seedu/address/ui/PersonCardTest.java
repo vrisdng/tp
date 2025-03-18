@@ -45,11 +45,21 @@ public class PersonCardTest {
 
         // Verify that the PersonCard updates the text dynamically
         assertEquals("1. ", ((Label) personCard.getRoot().lookup("#id")).getText());
-        assertTrue(((Label) personCard.getRoot().lookup("#phone")).isVisible() == false); // Phone should be hidden
-        assertTrue(((Label) personCard.getRoot().lookup("#email")).isVisible() == false); // Email should be hidden
-        assertTrue(((Label) personCard.getRoot().lookup("#address")).isVisible() == false); // Address should be hidden
-        assertTrue(((Label) personCard.getRoot().lookup("#studentId")).isVisible() == false); // Student ID should be hidden
-        assertTrue(((FlowPane) personCard.getRoot().lookup("#tags")).isVisible() == false); // Tags should be hidden
+        assertTrue(
+            ((Label) personCard.getRoot().lookup("#phone")).isVisible() == false
+        ); // Phone should be hidden
+        assertTrue(
+            ((Label) personCard.getRoot().lookup("#email")).isVisible() == false
+        ); // Email should be hidden
+        assertTrue(
+            ((Label) personCard.getRoot().lookup("#address")).isVisible() == false
+        ); // Address should be hidden
+        assertTrue(
+            ((Label) personCard.getRoot().lookup("#studentId")).isVisible() == false
+        ); // Student ID should be hidden
+        assertTrue(
+            ((FlowPane) personCard.getRoot().lookup("#tags")).isVisible() == false
+        ); // Tags should be hidden
     }
 
     @Test
@@ -77,10 +87,20 @@ public class PersonCardTest {
 
         // Verify that the PersonCard respects the DisplayPreferences
         assertEquals("1. ", ((Label) personCard.getRoot().lookup("#id")).getText());
-        assertFalse(((Label) personCard.getRoot().lookup("#phone")).isVisible()); // Phone should be hidden
-        assertFalse(((Label) personCard.getRoot().lookup("#email")).isVisible()); // Email should be hidden
-        assertFalse(((Label) personCard.getRoot().lookup("#address")).isVisible()); // Address should be hidden
-        assertFalse(((Label) personCard.getRoot().lookup("#studentId")).isVisible()); // Student ID should be hidden
-        assertFalse(((FlowPane) personCard.getRoot().lookup("#tags")).isVisible());
+        assertFalse(
+            ((Label) personCard.getRoot().lookup("#phone")).isVisible()
+        ); // Phone should be hidden
+        assertFalse(
+            ((Label) personCard.getRoot().lookup("#email")).isVisible()
+        ); // Email should be hidden
+        assertFalse(
+            ((Label) personCard.getRoot().lookup("#address")).isVisible()
+        ); // Address should be hidden
+        assertFalse(
+            ((Label) personCard.getRoot().lookup("#studentId")).isVisible()
+        ); // Student ID should be hidden
+        assertFalse(
+            ((FlowPane) personCard.getRoot().lookup("#tags")).isVisible()
+        ); // Tags should be hidden
     }
 }
