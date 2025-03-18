@@ -8,9 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -34,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                           PREFIX_TAG, PREFIX_STUDENT_ID);
+                                           PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL);
 
         Index index;
 
@@ -64,7 +67,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STUDENT_ID).isPresent()) {
             editPersonDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        // Only set tags if any values are provided.
+        Optional<Set<Tag>> tagOptional = parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG));
+        if (tagOptional.isPresent()) {
+            editPersonDescriptor.setTags(tagOptional.get());
+        }
+
+        // Only set tutorials if any values are provided.
+        if (!argMultimap.getAllValues(PREFIX_TUTORIAL).isEmpty()) {
+            Set<Tutorial> tutorials = ParserUtil.parseTutorials(argMultimap.getAllValues(PREFIX_TUTORIAL));
+            editPersonDescriptor.setTutorials(tutorials);
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
