@@ -49,44 +49,45 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+    
         id.setText(displayedIndex + ". ");
-        // Conditionally display fields based on DisplayPreferences
-        if (DisplayPreferences.isShowName()) {
-            name.setText(person.getName().fullName);
-        } else {
+        
+        // Always set the text for the name label
+        name.setText(person.getName().fullName);
+        if (!DisplayPreferences.isShowName()) {
             name.setVisible(false);
         }
-
-        if (DisplayPreferences.isShowPhone()) {
-            phone.setText(person.getPhone().value);
-        } else {
+    
+        // Always set the text for the phone label
+        phone.setText(person.getPhone().value);
+        if (!DisplayPreferences.isShowPhone()) {
             phone.setVisible(false);
         }
-
-        if (DisplayPreferences.isShowEmail()) {
-            email.setText(person.getEmail().value);
-        } else {
+    
+        // Always set the text for the email label
+        email.setText(person.getEmail().value);
+        if (!DisplayPreferences.isShowEmail()) {
             email.setVisible(false);
         }
-
-        if (DisplayPreferences.isShowAddress()) {
-            address.setText(person.getAddress().value);
-        } else {
+    
+        // Always set the text for the address label
+        address.setText(person.getAddress().value);
+        if (!DisplayPreferences.isShowAddress()) {
             address.setVisible(false);
         }
-
-        if (DisplayPreferences.isShowStudentId()) {
-            studentId.setText(person.getStudentId().value);
-        } else {
+    
+        // Always set the text for the studentId label
+        studentId.setText(person.getStudentId().value);
+        if (!DisplayPreferences.isShowStudentId()) {
             studentId.setVisible(false);
         }
-
-        if (DisplayPreferences.isShowTags()) {
-            tags.getChildren().clear();
-            person.getTags().stream()
-                    .sorted(Comparator.comparing(tag -> tag.tagName))
-                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        } else {
+    
+        // Handle tags
+        tags.getChildren().clear();
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (!DisplayPreferences.isShowTags()) {
             tags.setVisible(false);
         }
     }
