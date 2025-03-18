@@ -26,7 +26,9 @@ public class PersonCardTest {
     @BeforeAll
     public static void setUpJavaFx() {
         // Initialize JavaFX toolkit
-        Platform.startup(() -> {});
+        if (!Platform.isFxApplicationThread()) {
+            Platform.startup(() -> {});
+        }
     }
 
     @Test
