@@ -19,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -192,5 +193,30 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTutorial_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorial(null));
+    }
+
+    @Test
+    public void parseTutorial_invalidValue_throwsParseException() {
+        String invalidTutorial = "CS@12"; // assuming invalid due to '@'
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorial(invalidTutorial));
+    }
+
+    @Test
+    public void parseTutorial_validValueWithoutWhitespace_returnsTutorial() throws Exception {
+        String validTutorial = "CS2103T";
+        Tutorial expectedTutorial = new Tutorial(validTutorial);
+        assertEquals(expectedTutorial, ParserUtil.parseTutorial(validTutorial));
+    }
+
+    @Test
+    public void parseTutorial_validValueWithWhitespace_returnsTrimmedTutorial() throws Exception {
+        String tutorialWithWhitespace = "   CS2103T   ";
+        Tutorial expectedTutorial = new Tutorial("CS2103T");
+        assertEquals(expectedTutorial, ParserUtil.parseTutorial(tutorialWithWhitespace));
     }
 }

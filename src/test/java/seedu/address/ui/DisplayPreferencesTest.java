@@ -17,6 +17,7 @@ public class DisplayPreferencesTest {
         DisplayPreferences.setShowAddress(true);
         DisplayPreferences.setShowStudentId(true);
         DisplayPreferences.setShowTags(true);
+        DisplayPreferences.setShowTutorials(true);
     }
 
     @Test
@@ -28,6 +29,7 @@ public class DisplayPreferencesTest {
         assertTrue(DisplayPreferences.isShowAddress());
         assertTrue(DisplayPreferences.isShowStudentId());
         assertTrue(DisplayPreferences.isShowTags());
+        assertTrue(DisplayPreferences.isShowTutorials());
     }
 
     @Test
@@ -82,5 +84,13 @@ public class DisplayPreferencesTest {
         assertFalse(DisplayPreferences.isShowTags());
         DisplayPreferences.setShowTags(true);
         assertTrue(DisplayPreferences.isShowTags());
+    }
+
+    @Test
+    public void testSetShowTutorials() {
+        DisplayPreferences.setShowTutorials(false);
+        assertFalse(DisplayPreferences.isShowTutorials());
+        DisplayPreferences.setShowTutorials(true);
+        assertTrue(DisplayPreferences.isShowTutorials());
     }
 }

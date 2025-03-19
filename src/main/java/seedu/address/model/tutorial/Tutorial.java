@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a tutorial in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTutorialName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTutorial(String)}
  */
 public class Tutorial {
 
@@ -21,14 +21,14 @@ public class Tutorial {
      */
     public Tutorial(String tutorialName) {
         requireNonNull(tutorialName);
-        checkArgument(isValidTutorialName(tutorialName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTutorial(tutorialName), MESSAGE_CONSTRAINTS);
         this.tutorialName = tutorialName;
     }
 
     /**
      * Returns true if a given string is a valid tutorial name.
      */
-    public static boolean isValidTutorialName(String test) {
+    public static boolean isValidTutorial(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

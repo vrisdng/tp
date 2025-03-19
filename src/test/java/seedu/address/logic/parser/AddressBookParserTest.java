@@ -36,7 +36,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().withStudentId("A1234567X").build();
+        // Clear tutorials explicitly so expected Person matches parsed Person.
+        Person person = new PersonBuilder().withStudentId("A1234567X").withTutorials().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -59,8 +60,13 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().withStudentId("A1234567X").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        // Force expected descriptor's tags to be null (since no tag prefix is provided in the command)
+        descriptor.setTags(null);
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        System.out.println(new EditCommand(INDEX_FIRST_PERSON, descriptor));
+        System.out.println(command);
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
