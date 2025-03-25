@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -94,12 +94,13 @@ public class PersonCard extends UiPart<Region> {
             tags.setVisible(false);
         }
 
-        // Update tutorials to have similar style to tags with random colors
+        // Handle tutorials: join tutorial names by commas.
         tutorials.getChildren().clear();
-
-        person.getTutorials().stream()
+        String tutorialText = person.getTutorials().stream()
                 .sorted(Comparator.comparing(tutorial -> tutorial.tutorialName))
-                .forEach(tutorial -> tutorials.getChildren().add(new Label(tutorial.tutorialName)));
+                .map(tutorial -> tutorial.tutorialName)
+                .collect(Collectors.joining(", "));
+        tutorials.getChildren().add(new Label(tutorialText));
         if (!DisplayPreferences.isShowTutorials()) {
             tutorials.setVisible(false);
         }
