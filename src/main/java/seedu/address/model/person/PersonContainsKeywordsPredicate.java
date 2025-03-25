@@ -72,7 +72,8 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
      * Checks if this predicate is equal to another object.
      *
      * @param other The other object to compare to.
-     * @return {@code true} if the other object is a {@code PersonContainsKeywordsPredicate} with the same field and keywords.
+     * @return {@code true} if the other object is a {@code PersonContainsKeywordsPredicate}
+     * with the same field and keywords.
      */
     @Override
     public boolean equals(Object other) {
