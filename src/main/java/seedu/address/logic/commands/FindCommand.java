@@ -22,7 +22,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose specified field contains any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD 
+        + ": Finds all students whose specified field contains any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: PREFIX/KEYWORD [MORE_KEYWORDS]...\n"
         + "Supported prefixes: "

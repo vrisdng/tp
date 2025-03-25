@@ -21,11 +21,23 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     private final String field;
     private final List<String> keywords;
 
+    /**
+     * Constructs a {@code PersonContainsKeywordsPredicate}.
+     *
+     * @param field The field to be searched (e.g., name, email, phone, etc.).
+     * @param keywords The list of keywords to search for.
+     */
     public PersonContainsKeywordsPredicate(String field, List<String> keywords) {
         this.field = field;
         this.keywords = keywords;
     }
 
+    /**
+     * Evaluates this predicate on the given {@code Person}.
+     *
+     * @param person The person to test against the predicate.
+     * @return {@code true} if the person's specified field contains any of the keywords, {@code false} otherwise.
+     */
     @Override
     public boolean test(Person person) {
         if (field.equalsIgnoreCase(PREFIX_NAME.getPrefix())) {
@@ -56,6 +68,12 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if this predicate is equal to another object.
+     *
+     * @param other The other object to compare to.
+     * @return {@code true} if the other object is a {@code PersonContainsKeywordsPredicate} with the same field and keywords.
+     */
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -70,6 +88,11 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
         return keywords.equals(otherPredicate.keywords);
     }
 
+    /**
+     * Returns a string representation of this predicate.
+     *
+     * @return A string representation of the predicate, including the keywords.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("keywords", keywords).toString();
