@@ -42,7 +42,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         if (field.equalsIgnoreCase(PREFIX_NAME.getPrefix())) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                    .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getName().fullName, keyword));
         } else if (field.equalsIgnoreCase(PREFIX_TAG.getPrefix())) {
             return person.getTags().stream()
                     .anyMatch(tag -> keywords.stream()
@@ -73,7 +73,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
      *
      * @param other The other object to compare to.
      * @return {@code true} if the other object is a {@code PersonContainsKeywordsPredicate}
-     *         with the same field and keywords.
+     *          with the same field and keywords.
      */
     @Override
     public boolean equals(Object other) {

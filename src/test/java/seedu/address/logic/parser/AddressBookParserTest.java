@@ -51,9 +51,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         String studentId = "A1234567X";
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + studentId);
-        assertEquals(new DeleteCommand(new StudentId(studentId)), command);
+        DeleteCommand expectedDeleteCommandById = new DeleteCommand("s/", studentId);
+        DeleteCommand parsedDeleteCommandById = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " s/ " + studentId);
+        assertEquals(expectedDeleteCommandById, parsedDeleteCommandById);
     }
 
     @Test
