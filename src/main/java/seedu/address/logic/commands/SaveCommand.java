@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.storage.JsonAddressBookStorage;
-
-import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * Saves the current address book to a specified JSON file in the data folder.
@@ -13,7 +13,8 @@ import java.nio.file.Path;
 public class SaveCommand extends Command {
 
     public static final String COMMAND_WORD = "save";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Saves the current address book to a specified JSON file in the data folder.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Saves the current address book to a specified JSON file in the data folder.\n"
             + "Syntax: " + COMMAND_WORD + " <filename>";
     public static final String MESSAGE_SUCCESS = "Address book saved to %s";
     public static final String MESSAGE_FAILURE = "Failed to save address book: %s";
@@ -22,6 +23,10 @@ public class SaveCommand extends Command {
 
     public SaveCommand(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     @Override
@@ -34,9 +39,18 @@ public class SaveCommand extends Command {
 
         try {
             jsonStorage.saveAddressBook(model.getAddressBook());
-            return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS, filePath));
         } catch (IOException e) {
-            throw new CommandException(String.format(MESSAGE_FAILURE, e.getMessage()));
+            throw new CommandException(
+                    String.format(MESSAGE_FAILURE, e.getMessage()));
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SaveCommand // instanceof handles nulls
+                && fileName.equals(((SaveCommand) other).fileName));
     }
 }
