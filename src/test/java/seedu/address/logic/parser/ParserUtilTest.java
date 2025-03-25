@@ -109,8 +109,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseAddress_blankValue_returnsEmptyAddress() throws Exception {
+        Address expectedAddress = new Address("");
+        assertEquals(expectedAddress, ParserUtil.parseAddress(INVALID_ADDRESS));
     }
 
     @Test
