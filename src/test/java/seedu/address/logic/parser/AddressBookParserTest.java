@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.StudentId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -50,10 +51,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         String studentId = "A1234567X";
-        DeleteCommand expectedDeleteCommandById = new DeleteCommand("s/", studentId);
-        DeleteCommand parsedDeleteCommandById = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " s/ " + studentId);
-        assertEquals(expectedDeleteCommandById, parsedDeleteCommandById);
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + studentId);
+        assertEquals(new DeleteCommand(new StudentId(studentId)), command);
     }
 
     @Test
@@ -78,13 +78,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        // Test for finding by name
-        List<String> nameKeywords = Arrays.asList("bar", "baz");
-        FindCommand expectedFindCommand =
-                new FindCommand(new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), nameKeywords));
-        assertEquals(expectedFindCommand, parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " " + String.join(" ", nameKeywords)));
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
+
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);

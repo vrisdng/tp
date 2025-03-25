@@ -39,24 +39,6 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}, ignoring case.
-     * A full match is not required (i.e., it checks for substring matches).
-     *
-     * @param sentence The sentence to search in. Cannot be null.
-     * @param word The word to search for. Cannot be null, must be a single word.
-     * @return True if the sentence contains the word, ignoring case.
-     */
-    public static boolean containsIgnoreCase(String sentence, String word) {
-        requireNonNull(sentence);
-        requireNonNull(word);
-
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-
-        return sentence.toLowerCase().contains(preppedWord.toLowerCase());
-    }
-
-    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
