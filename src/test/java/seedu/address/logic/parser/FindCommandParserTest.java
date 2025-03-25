@@ -3,13 +3,15 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -22,13 +24,19 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
+        // Test for finding by name
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, PREFIX_NAME.getPrefix() + " Alice Bob", expectedFindCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        // Test for finding by tag
+        FindCommand expectedTagFindCommand =
+                new FindCommand(new PersonContainsKeywordsPredicate(PREFIX_TAG.getPrefix(), Arrays.asList("friends", "owesMoney")));
+        assertParseSuccess(parser, PREFIX_TAG.getPrefix() + " friends owesMoney", expectedTagFindCommand);
+
+        // Test with multiple whitespaces between keywords
+        FindCommand expectedWhitespaceFindCommand =
+                new FindCommand(new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " \n " + PREFIX_NAME.getPrefix() + " Alice \n \t Bob  \t", expectedWhitespaceFindCommand);
     }
-
 }
