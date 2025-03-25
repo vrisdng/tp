@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -41,11 +40,24 @@ public class DeleteCommand extends Command {
     private final String field;
     private final String keyword;
 
+    /**
+     * Constructs a {@code DeleteCommand}.
+     *
+     * @param field The field to search by (e.g., name, tag, phone, etc.).
+     * @param keyword The keyword to match in the specified field.
+     */
     public DeleteCommand(String field, String keyword) {
         this.field = field;
         this.keyword = keyword;
     }
 
+    /**
+     * Executes the delete command by finding and deleting all persons matching the specified field and keyword.
+     *
+     * @param model The model containing the list of persons.
+     * @return A {@code CommandResult} indicating the number of persons deleted.
+     * @throws CommandException If no persons match the specified field and keyword.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -69,6 +81,12 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personsToDelete.size()));
     }
 
+    /**
+     * Checks if this command is equal to another object.
+     *
+     * @param other The other object to compare to.
+     * @return {@code true} if the other object is a {@code DeleteCommand} with the same field and keyword.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -84,6 +102,11 @@ public class DeleteCommand extends Command {
         return field.equals(otherDeleteCommand.field) && keyword.equals(otherDeleteCommand.keyword);
     }
 
+    /**
+     * Returns a string representation of this command.
+     *
+     * @return A string representation of the command, including the field and keyword.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
