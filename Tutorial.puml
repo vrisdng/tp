@@ -1,0 +1,76 @@
+@startuml
+
+class Person {
+    - name: Name
+    - phone: Phone
+    - email: Email
+    - address: Address
+    - studentId: StudentId
+    - tags: Set<Tag>
+    + isSamePerson(p: Person): boolean
+}
+
+class UniquePersonList {
+    - internalList: List<Person>
+    + add(p: Person)
+    + remove(p: Person)
+    + contains(p: Person): boolean
+    + setPerson(target, edited): void
+    + asUnmodifiableObservableList(): List<Person>
+}
+
+class Name {
+    - fullName: String
+    + isValidName(name: String): boolean
+}
+
+class Phone {
+    - value: String
+    + isValidPhone(phone: String): boolean
+}
+
+class Email {
+    - value: String
+    + isValidEmail(email: String): boolean
+}
+
+class Address {
+    - value: String
+    + isValidAddress(addr: String): boolean
+}
+
+class StudentId {
+    - value: String
+    + isValidStudentId(id: String): boolean
+}
+
+class Tag {
+    - tagName: String
+    + isValidTagName(tag: String): boolean
+}
+
+class Tutorial {
+        - final String tutorialName
+        + Tutorial(String tutorialName)
+        + static boolean isValidTutorial(String test)
+        + boolean equals(Object other)
+        + int hashCode()
+}
+
+class NameContainsKeywordsPredicate {
+    - keywords: List<String>
+    + test(p: Person): boolean
+}
+
+' Associations
+Person "1" o-- "*" Tag
+Person "1" o-- "*" Tutorial
+Person "1" *-- "1" Name
+Person "1" *-- "1" Phone
+Person "1" *-- "1" Email
+Person "1" *-- "1" Address
+Person "1" *-- "1" StudentId
+
+UniquePersonList "1" *-- "*" Person
+
+@enduml
