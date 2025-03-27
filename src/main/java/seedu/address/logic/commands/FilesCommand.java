@@ -33,6 +33,7 @@ public class FilesCommand extends Command {
         String filesList = Arrays.stream(files)
             .filter(file -> !file.getName().equals(EXCLUDED_FILE))
             .map(File::getName)
+            .filter(name -> name.endsWith(".json"))
             .map(name -> name.replace(".json", ""))
             .collect(Collectors.joining("\n"));
 
