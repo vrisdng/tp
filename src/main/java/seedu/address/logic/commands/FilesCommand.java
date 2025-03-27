@@ -21,7 +21,9 @@ public class FilesCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model must not be null";
         Path dataFolderPath = model.getUserPrefs().getAddressBookFilePath().getParent();
+        assert dataFolderPath != null : "Data folder path should not be null";
 
         File dataFolder = dataFolderPath.toFile();
         File[] files = dataFolder.listFiles();
