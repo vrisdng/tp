@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant "l:ListCommand" as ListCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "d:DisplayPreferences" as DisplayPreferences MODEL_COLOR
+participant "u:UiManager" as UiManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list n/ p/")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("list n/ p/")
+activate AddressBookParser
+
+create ListCommandParser
+AddressBookParser -> ListCommandParser : parse("n/ p/")
+activate ListCommandParser
+
+create ListCommand
+ListCommandParser -> ListCommand : new ListCommand(true, true, false, false, false, false, false)
+activate ListCommand
+
+ListCommand --> ListCommandParser : l
+deactivate ListCommand
+
+ListCommandParser --> AddressBookParser : l
+deactivate ListCommandParser
+
+AddressBookParser --> LogicManager : l
+deactivate AddressBookParser
+
+LogicManager -> ListCommand : execute(m)
+activate ListCommand
+
+ListCommand -> DisplayPreferences : setShowName(true)
+ListCommand -> DisplayPreferences : setShowPhone(true)
+ListCommand -> DisplayPreferences : setShowEmail(false)
+ListCommand -> DisplayPreferences : setShowAddress(false)
+ListCommand -> DisplayPreferences : setShowStudentId(false)
+ListCommand -> DisplayPreferences : setShowTags(false)
+ListCommand -> DisplayPreferences : setShowTutorials(false)
+
+ListCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+Model --> ListCommand
+deactivate Model
+
+ListCommand -> UiManager : refreshPersonListPanel()
+activate UiManager
+UiManager --> ListCommand
+deactivate UiManager
+
+create CommandResult
+ListCommand -> CommandResult : new CommandResult("Listed all persons")
+activate CommandResult
+
+CommandResult --> ListCommand
+deactivate CommandResult
+
+ListCommand --> LogicManager : r
+deactivate ListCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
