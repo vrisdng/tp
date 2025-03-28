@@ -1,0 +1,27 @@
+@startuml
+actor User as user
+participant SaveCommand
+participant Model
+participant UserPrefs
+participant Path
+participant JsonAddressBookStorage
+
+user -> SaveCommand: execute(Model model)
+SaveCommand -> Model: getUserPrefs()
+Model -> UserPrefs: getAddressBookFilePath()
+UserPrefs -> Path: getParent()
+SaveCommand <- Path: dataFolderPath
+
+SaveCommand -> Path: resolve(fileName + ".json")
+SaveCommand <- Path: filePath
+
+SaveCommand -> JsonAddressBookStorage: new JsonAddressBookStorage(filePath)
+SaveCommand <- JsonAddressBookStorage: jsonStorage
+
+SaveCommand -> JsonAddressBookStorage: saveAddressBook(model.getAddressBook())
+alt IOException occurs
+    SaveCommand -> SaveCommand: throw CommandException(MESSAGE_FAILURE)
+else Success
+    SaveCommand -> SaveCommand: return CommandResult(MESSAGE_SUCCESS)
+end
+@enduml
