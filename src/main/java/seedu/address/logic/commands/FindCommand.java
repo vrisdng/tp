@@ -34,9 +34,9 @@ public class FindCommand extends Command {
         + PREFIX_ADDRESS.getPrefix() + " (address), "
         + PREFIX_STUDENT_ID.getPrefix() + " (id), "
         + PREFIX_TUTORIAL.getPrefix() + " (tutorial)\n"
-        + "Example: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " " + "john\n"
-        + "Example: " + COMMAND_WORD + " " + PREFIX_TAG.getPrefix() + " " + "owesMoney\n"
-        + "Example: " + COMMAND_WORD + " " + PREFIX_TUTORIAL.getPrefix() + " " + "CS2103T";
+        + "Example: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + "john\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_TAG.getPrefix() + "owesMoney\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_TUTORIAL.getPrefix() + "CS2103T";
 
 
 
