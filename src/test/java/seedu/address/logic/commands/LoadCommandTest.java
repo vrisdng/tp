@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -111,7 +112,14 @@ public class LoadCommandTest {
     private Path createTempJsonFile(AddressBook addressBook) throws IOException {
         Path tempFilePath = Path.of("tempAddressBook.json");
         JsonSerializableAddressBook jsonAddressBook = new JsonSerializableAddressBook(addressBook);
+
+        // Write JSON data to the file
         JsonUtil.saveJsonFile(jsonAddressBook, tempFilePath);
+
+        // Append a newline at the end of the file
+        String content = Files.readString(tempFilePath);
+        Files.writeString(tempFilePath, content + System.lineSeparator());
+
         return tempFilePath;
     }
 }
