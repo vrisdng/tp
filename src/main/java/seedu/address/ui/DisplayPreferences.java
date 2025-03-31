@@ -70,4 +70,16 @@ public class DisplayPreferences {
     public static void setShowTutorials(boolean showTutorials) {
         DisplayPreferences.showTutorials = showTutorials;
     }
+    /**
+     * Resets the display preferences to their default state (show all fields).
+     */
+    public static void resetToDefault() {
+        showName = true;
+        showPhone = true;
+        showEmail = true;
+        showAddress = true;
+        showStudentId = true;
+        showTags = true;
+        showTutorials = true;
+    }
 }
