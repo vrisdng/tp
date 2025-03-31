@@ -49,7 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             PREFIX_EMAIL,
             PREFIX_ADDRESS,
             PREFIX_TAG,
-            PREFIX_STUDENT_ID,    
+            PREFIX_STUDENT_ID,
             PREFIX_TUTORIAL }) {
             if (!argMultimap.getAllValues(prefix).isEmpty()) {
                 String field = prefix.getPrefix();
