@@ -44,17 +44,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         for (Prefix prefix : new Prefix[] {
-                PREFIX_NAME,
-                PREFIX_PHONE,
-                PREFIX_EMAIL,
-                PREFIX_ADDRESS,
-                PREFIX_TAG,
-                PREFIX_STUDENT_ID,
-                PREFIX_TUTORIAL }) {
+            PREFIX_NAME,
+            PREFIX_PHONE,
+            PREFIX_EMAIL,
+            PREFIX_ADDRESS,
+            PREFIX_TAG,
+            PREFIX_STUDENT_ID,    
+            PREFIX_TUTORIAL }) {
             if (!argMultimap.getAllValues(prefix).isEmpty()) {
                 String field = prefix.getPrefix();
                 return new FindCommand(new PersonContainsKeywordsPredicate(field, argMultimap.getAllValues(prefix)));
             }
+        }
+
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
