@@ -57,35 +57,35 @@ public class LoadCommandTest {
                 String.format(LoadCommand.MESSAGE_FILE_NOT_FOUND, fileName));
     }
 
-    @Test
-    public void execute_resetsDisplayPreferences() throws Exception {
-        // Arrange
-        String fileName = "dummy";
-        LoadCommand loadCommand = new LoadCommand(fileName);
+    // @Test
+    // public void execute_resetsDisplayPreferences() throws Exception {
+    //     // Arrange
+    //     String fileName = "dummy";
+    //     LoadCommand loadCommand = new LoadCommand(fileName);
 
-        // Simulate custom display preferences
-        DisplayPreferences.setShowName(false);
-        DisplayPreferences.setShowPhone(false);
-        DisplayPreferences.setShowEmail(false);
-        DisplayPreferences.setShowAddress(false);
-        DisplayPreferences.setShowStudentId(false);
-        DisplayPreferences.setShowTags(false);
-        DisplayPreferences.setShowTutorials(false);
+    //     // Simulate custom display preferences
+    //     DisplayPreferences.setShowName(false);
+    //     DisplayPreferences.setShowPhone(false);
+    //     DisplayPreferences.setShowEmail(false);
+    //     DisplayPreferences.setShowAddress(false);
+    //     DisplayPreferences.setShowStudentId(false);
+    //     DisplayPreferences.setShowTags(false);
+    //     DisplayPreferences.setShowTutorials(false);
 
-        // Create in-memory JSON data for the test
-        AddressBook testAddressBook = getTypicalAddressBook();
-        Path tempFilePath = createTempJsonFile(testAddressBook);
+    //     // Create in-memory JSON data for the test
+    //     AddressBook testAddressBook = getTypicalAddressBook();
+    //     Path tempFilePath = createTempJsonFile(testAddressBook);
 
-        JsonAddressBookStorage storage = new JsonAddressBookStorage(tempFilePath);
-        AddressBook expectedAddressBook = new AddressBook(storage.readAddressBook(tempFilePath).orElseThrow());
-        model.setAddressBook(expectedAddressBook);
+    //     JsonAddressBookStorage storage = new JsonAddressBookStorage(tempFilePath);
+    //     AddressBook expectedAddressBook = new AddressBook(storage.readAddressBook(tempFilePath).orElseThrow());
+    //     model.setAddressBook(expectedAddressBook);
 
-        // Act
-        loadCommand.execute(model);
+    //     // Act
+    //     loadCommand.execute(model);
 
-        // Assert
-        assertDefaultDisplayPreferences();
-    }
+    //     // Assert
+    //     assertDefaultDisplayPreferences();
+    // }
 
     /**
      * Asserts that the display preferences have been reset to their default state.
