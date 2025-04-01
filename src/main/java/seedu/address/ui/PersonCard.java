@@ -96,11 +96,9 @@ public class PersonCard extends UiPart<Region> {
 
         // Handle tutorials: join tutorial names by commas.
         tutorials.getChildren().clear();
-        String tutorialText = person.getTutorials().stream()
+        person.getTutorials().stream()
                 .sorted(Comparator.comparing(tutorial -> tutorial.tutorialName))
-                .map(tutorial -> tutorial.tutorialName)
-                .collect(Collectors.joining(", "));
-        tutorials.getChildren().add(new Label(tutorialText));
+                .forEach(tutorial -> tutorials.getChildren().add(new Label(tutorial.tutorialName)));
         if (!DisplayPreferences.isShowTutorials()) {
             tutorials.setVisible(false);
         }
