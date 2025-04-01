@@ -24,21 +24,48 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
-        // Test for finding by name
-        FindCommand expectedFindCommand = new FindCommand(
-                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, PREFIX_NAME.getPrefix() + " Alice Bob", expectedFindCommand);
+    public void parse_validNameSingleKeyword_returnsFindCommand() {
+        FindCommand expected = new FindCommand(
+                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice")));
+        assertParseSuccess(parser, " n/Alice", expected);
+    }
 
-        // Test for finding by tag
-        FindCommand expectedTagFindCommand = new FindCommand(
+    @Test
+    public void parse_validNameMultipleKeywords_returnsFindCommand() {
+        FindCommand expected = new FindCommand(
+                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " n/Alice n/Bob", expected);
+    }
+
+    @Test
+    public void parse_validTagMultipleKeywords_returnsFindCommand() {
+        FindCommand expected = new FindCommand(
                 new PersonContainsKeywordsPredicate(PREFIX_TAG.getPrefix(), Arrays.asList("friends", "owesMoney")));
-        assertParseSuccess(parser, PREFIX_TAG.getPrefix() + " friends owesMoney", expectedTagFindCommand);
+        assertParseSuccess(parser, " t/friends t/owesMoney", expected);
+    }
 
-        // Test with multiple whitespaces between keywords
-        FindCommand expectedWhitespaceFindCommand = new FindCommand(
+    @Test
+    public void parse_validWhitespaceHandled_returnsFindCommand() {
+        FindCommand expected = new FindCommand(
                 new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, " \n " + PREFIX_NAME.getPrefix() + " Alice \n \t Bob  \t",
-                expectedWhitespaceFindCommand);
+        assertParseSuccess(parser, " \n  n/Alice   n/Bob  ", expected);
+    }
+
+    @Test
+    public void parse_multiplePrefixesUsed_throwsParseException() {
+        assertParseFailure(parser, " n/Alice t/friends",
+                "Please use exactly one field for 'find' command.");
+    }
+
+    @Test
+    public void parse_invalidPrefixUsed_throwsParseException() {
+        assertParseFailure(parser, " x/random", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_nonEmptyPreamble_throwsParseException() {
+        assertParseFailure(parser, " hello n/Alice",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 }

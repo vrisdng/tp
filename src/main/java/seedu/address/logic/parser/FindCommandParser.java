@@ -56,8 +56,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 return new FindCommand(new PersonContainsKeywordsPredicate(field, argMultimap.getAllValues(prefix)));
             }
         }
-
-        }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 }
