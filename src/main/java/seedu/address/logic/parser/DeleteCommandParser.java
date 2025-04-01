@@ -25,14 +25,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        String[] splitArgs = trimmedArgs.split("\\s+", 2); // Split by space, limit to 2 parts
+        String[] splitArgs = trimmedArgs.split("/", 2);
 
         // Ensure the input has both a field and a keyword
         if (splitArgs.length < 2 || splitArgs[1].isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        String field = splitArgs[0].trim();
+        String field = splitArgs[0].trim() + "/";
         String keyword = splitArgs[1].trim();
 
         // Validate the field

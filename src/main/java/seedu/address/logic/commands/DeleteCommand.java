@@ -23,17 +23,17 @@ public class DeleteCommand extends Command {
         + ": Deletes students based on the specified field and value.\n"
         + "Parameters: PREFIX KEYWORD\n"
         + "Supported prefixes: "
-        + "n/ (Name), "
-        + "t/ (Tag), "
-        + "p/ (Phone), "
-        + "e/ (Email), "
-        + "a/ (Address), "
-        + "s/ (Student ID), "
-        + "tut/ (Tutorial)\n"
-        + "Example: " + COMMAND_WORD + " n/ Alice\n"
-        + "Example: " + COMMAND_WORD + " t/ friends\n"
-        + "Example: " + COMMAND_WORD + " s/ A1234567X\n"
-        + "Example: " + COMMAND_WORD + " tut/ CS2103T";
+        + "n/(Name), "
+        + "t/(Tag), "
+        + "p/(Phone), "
+        + "e/(Email), "
+        + "a/(Address), "
+        + "s/(Student ID), "
+        + "tut/(Tutorial)\n"
+        + "Example: " + COMMAND_WORD + " n/Alice\n"
+        + "Example: " + COMMAND_WORD + " t/friends\n"
+        + "Example: " + COMMAND_WORD + " s/A1234567X\n"
+        + "Example: " + COMMAND_WORD + " tut/CS2103T";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Students: %1$s";
     public static final String MESSAGE_NO_PERSON_FOUND = "No students found matching the criteria: %1$s";

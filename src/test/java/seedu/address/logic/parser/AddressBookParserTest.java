@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -78,12 +79,15 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        // Test for finding by name
         List<String> nameKeywords = Arrays.asList("bar", "baz");
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), nameKeywords));
-        assertEquals(expectedFindCommand, parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " " + String.join(" ", nameKeywords)));
+
+        String input = FindCommand.COMMAND_WORD + " " + nameKeywords.stream()
+                .map(keyword -> PREFIX_NAME.getPrefix() + keyword)
+                .collect(Collectors.joining(" "));
+
+        assertEquals(expectedFindCommand, parser.parseCommand(input));
     }
 
     @Test
