@@ -46,23 +46,23 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
         } else if (field.equalsIgnoreCase(PREFIX_TAG.getPrefix())) {
             return person.getTags().stream()
                     .anyMatch(tag -> keywords.stream()
-                            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
+                            .anyMatch(keyword -> StringUtil.containsIgnoreCase(tag.tagName, keyword)));
         } else if (field.equalsIgnoreCase(PREFIX_PHONE.getPrefix())) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getPhone().value, keyword));
         } else if (field.equalsIgnoreCase(PREFIX_EMAIL.getPrefix())) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getEmail().value, keyword));
         } else if (field.equalsIgnoreCase(PREFIX_ADDRESS.getPrefix())) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getAddress().value, keyword));
         } else if (field.equalsIgnoreCase(PREFIX_STUDENT_ID.getPrefix())) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getStudentId().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getStudentId().value, keyword));
         } else if (field.equalsIgnoreCase(PREFIX_TUTORIAL.getPrefix())) {
             return person.getTutorials().stream()
                     .anyMatch(tut -> keywords.stream()
-                            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tut.tutorialName, keyword)));
+                            .anyMatch(keyword -> StringUtil.containsIgnoreCase(tut.tutorialName, keyword)));
         } else {
             throw new IllegalArgumentException("Unsupported field: " + field);
         }

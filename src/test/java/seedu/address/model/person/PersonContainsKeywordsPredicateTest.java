@@ -122,4 +122,51 @@ public class PersonContainsKeywordsPredicateTest {
             assertTrue(e.getMessage().contains("Unsupported field"));
         }
     }
+    @Test
+    public void test_nameContainsPartialWord_returnsTrue() {
+        // Partial word match
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Ali"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+    }
+
+    @Test
+    public void test_tagContainsPartialWord_returnsTrue() {
+        // Partial word match
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("t/", Arrays.asList("friend"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("friends", "owesMoney").build()));
+    }
+
+    @Test
+    public void test_addressContainsPartialWord_returnsTrue() {
+        // Partial word match
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("a/", Arrays.asList("Mai"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("123 Main Street").build()));
+    }
+
+    @Test
+    public void test_emailContainsPartialWord_returnsTrue() {
+        // Partial word match
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("e/", Arrays.asList("exam"));
+        assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
+    }
+
+    @Test
+    public void test_studentIdContainsPartialWord_returnsTrue() {
+        // Partial word match
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("s/", Arrays.asList("A123"));
+        assertTrue(predicate.test(new PersonBuilder().withStudentId("A1234567X").build()));
+    }
+
+    @Test
+    public void test_tutorialContainsPartialWord_returnsTrue() {
+        // Partial word match
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("tut/", Arrays.asList("CS210"));
+        assertTrue(predicate.test(new PersonBuilder().withTutorials("CS2103T").build()));
+    }
 }

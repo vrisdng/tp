@@ -159,9 +159,9 @@ Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find n/John` returns `John Doe` and `Johnny Bravo`.
-* `find n/alex david` returns `Alex Yeoh` and `David Li`.
 * `find t/friend` returns all persons tagged as `friend`.
 * `find tut/CS2103T` returns all persons with tutorial `CS2103T`.
+* `find n/Ali` returns `Alice Pauline` (partial match).
 
 ![Sample output for 'find tut/CS2103T'](images\FindTut2103T.png)
 
@@ -181,10 +181,10 @@ Format: `delete PREFIX KEYWORD`
   * `s/` - Delete by student ID
   * `tut/` - Delete by tutorials
 * The search is case-insensitive. e.g., `alice` will match `Alice`.
-* Only full words will be matched. e.g., `Ali` will not match `Alice`.
+* Partial word will be also be matched. e.g., `Ali` will match `Alice`.
 
 Examples:
-* `delete n/John` - Deletes all students with the name `John`.
+* `delete n/John` - Deletes all students with the name `John`, including `Johny`, `Johnathan`, ect.
 * `delete t/friends` - Deletes all students tagged as `friends`.
 * `delete s/A1234567X` - Deletes the student with the student ID `A1234567X`.
 * `delete tut/CS2103T` - Deletes all students in the tutorial `CS2103T`.
