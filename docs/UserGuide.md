@@ -119,7 +119,7 @@ Examples:
 * `list n/ p/` - Displays all persons with only their name and phone number.
 * `list n/ e/ t/` - Displays all persons with their name, email, and tags.
 
-![Sample output for list n/ e/ t/](images/listnet.png)
+![Sample output for 'list n/ e/ t/'](images/listnet.png)
 
 ### Editing a person : `edit`
 
@@ -163,7 +163,7 @@ Examples:
 * `find t/friend` returns all persons tagged as `friend`.
 * `find tut/CS2103T` returns all persons with tutorial `CS2103T`.
 
-![Sample output for find tut/CS2103T](images\FindTut2103T.png)
+![Sample output for 'find tut/CS2103T'](images\FindTut2103T.png)
 
 ### Deleting a person/ a group of people : `delete`
 
