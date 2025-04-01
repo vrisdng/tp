@@ -1,0 +1,107 @@
+{
+  "persons" : [ {
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "studentId" : "A1234567X",
+    "tags" : [ "owesMoney", "friends" ],
+    "tutorials" : [ "CS2103T", "CS2101" ]
+  }, {
+    "name" : "Johnny Dover",
+    "phone" : "98769932",
+    "email" : "dover@example.com",
+    "address" : "Kent Ridge",
+    "studentId" : "A1236969X",
+    "tags" : [ "lendsMoney", "friends" ],
+    "tutorials" : [ "CS2109S", "CS2103T", "CS2101" ]
+  }, {
+    "name" : "Jonathan Dough",
+    "phone" : "96695432",
+    "email" : "bread@example.com",
+    "address" : "Clementi",
+    "studentId" : "A1234444X",
+    "tags" : [ "students" ],
+    "tutorials" : [ "CS2103T", "CS2107" ]
+  }, {
+    "name" : "Jaden Sancho",
+    "phone" : "98763333",
+    "email" : "js@example.com",
+    "address" : "Buona Vista",
+    "studentId" : "A1111567X",
+    "tags" : [ "enermy" ],
+    "tutorials" : [ "CS2030S", "CS2103T" ]
+  }, {
+    "name" : "Helen Goh",
+    "phone" : "19876543",
+    "email" : "helengoh@example.com",
+    "address" : "357 Aspen Court",
+    "studentId" : "A0123456G",
+    "tags" : [ "friend", "colleague" ],
+    "tutorials" : [ "CS2109" ]
+  }, {
+    "name" : "George Tan",
+    "phone" : "10987654",
+    "email" : "georgetan@example.com",
+    "address" : "951 Willow Way",
+    "studentId" : "A9012345F",
+    "tags" : [ "teammate" ],
+    "tutorials" : [ "CS2108" ]
+  }, {
+    "name" : "Fiona Ng",
+    "phone" : "21098765",
+    "email" : "fionang@example.com",
+    "address" : "753 Spruce Street",
+    "studentId" : "A8901234E",
+    "tags" : [ "classmate" ],
+    "tutorials" : [ "CS2107" ]
+  }, {
+    "name" : "Eric Chua",
+    "phone" : "32109876",
+    "email" : "ericchua@example.com",
+    "address" : "159 Birch Road",
+    "studentId" : "A7890123D",
+    "tags" : [ "family" ],
+    "tutorials" : [ "CS2104" ]
+  }, {
+    "name" : "Diana Wong",
+    "phone" : "43210987",
+    "email" : "dianawong@example.com",
+    "address" : "987 Cedar Boulevard",
+    "studentId" : "A6789012C",
+    "tags" : [ "colleague" ],
+    "tutorials" : [ "CS2102" ]
+  }, {
+    "name" : "Charlie Lim",
+    "phone" : "54321098",
+    "email" : "charlielim@example.com",
+    "address" : "654 Maple Drive",
+    "studentId" : "A5678901B",
+    "tags" : [ "friend", "neighbor" ],
+    "tutorials" : [ "CS2105" ]
+  }, {
+    "name" : "Bob Lee",
+    "phone" : "65432109",
+    "email" : "boblee@example.com",
+    "address" : "321 Oak Lane",
+    "studentId" : "A4567890A",
+    "tags" : [ "teammate" ],
+    "tutorials" : [ "CS2106" ]
+  }, {
+    "name" : "Alice Tan",
+    "phone" : "76543210",
+    "email" : "alicetan@example.com",
+    "address" : "789 Pine Avenue",
+    "studentId" : "A3456789Z",
+    "tags" : [ "classmate" ],
+    "tutorials" : [ "CS2100" ]
+  }, {
+    "name" : "Jane Smith",
+    "phone" : "87654321",
+    "email" : "janesmith@example.com",
+    "address" : "456 Elm Street",
+    "studentId" : "A2345678Y",
+    "tags" : [ "family" ],
+    "tutorials" : [ "CS2101" ]
+  } ]
+}

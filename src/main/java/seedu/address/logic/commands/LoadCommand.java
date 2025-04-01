@@ -7,6 +7,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.ui.DisplayPreferences;
+import seedu.address.ui.UiManager;
 
 /**
  * Loads a file from the userprefs directory.
@@ -20,7 +22,6 @@ public class LoadCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "File loaded successfully: %s";
     public static final String MESSAGE_FILE_NOT_FOUND = "File not found in the userprefs directory: %s";
-    public static final String USERPREFS_DIRECTORY = "userprefs";
 
     private final String fileName;
 
@@ -50,6 +51,12 @@ public class LoadCommand extends Command {
         } catch (Exception e) {
             throw new CommandException("Error reading file: " + e.getMessage());
         }
+
+        // Reset display preferences to default state
+        DisplayPreferences.resetToDefault();
+
+        // Refresh the UI to reflect the default display preferences
+        UiManager.refreshPersonListPanel();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
     }
