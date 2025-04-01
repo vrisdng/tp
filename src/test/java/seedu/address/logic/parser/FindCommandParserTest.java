@@ -26,28 +26,29 @@ public class FindCommandParserTest {
     @Test
     public void parse_validNameSingleKeyword_returnsFindCommand() {
         FindCommand expected = new FindCommand(
-                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice")));
+                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice"), false));
         assertParseSuccess(parser, " n/Alice", expected);
     }
 
     @Test
     public void parse_validNameMultipleKeywords_returnsFindCommand() {
         FindCommand expected = new FindCommand(
-                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
+                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob"), false));
         assertParseSuccess(parser, " n/Alice n/Bob", expected);
     }
 
     @Test
     public void parse_validTagMultipleKeywords_returnsFindCommand() {
         FindCommand expected = new FindCommand(
-                new PersonContainsKeywordsPredicate(PREFIX_TAG.getPrefix(), Arrays.asList("friends", "owesMoney")));
+                new PersonContainsKeywordsPredicate(PREFIX_TAG.getPrefix(),
+                        Arrays.asList("friends", "owesMoney"), false));
         assertParseSuccess(parser, " t/friends t/owesMoney", expected);
     }
 
     @Test
     public void parse_validWhitespaceHandled_returnsFindCommand() {
         FindCommand expected = new FindCommand(
-                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob")));
+                new PersonContainsKeywordsPredicate(PREFIX_NAME.getPrefix(), Arrays.asList("Alice", "Bob"), false));
         assertParseSuccess(parser, " \n  n/Alice   n/Bob  ", expected);
     }
 

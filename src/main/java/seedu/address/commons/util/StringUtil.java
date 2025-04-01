@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -82,5 +83,32 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if all the {@code words} are present in the {@code sentence}.
+     * Ignores case, and a full word match is required for each word.
+     * <p>
+     * Examples:
+     * - containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("Alice", "Charlie")) -> true
+     * - containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("Alice", "David")) -> false
+     * - containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("Ali")) -> false (partial match not allowed)
+     * - containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList()) -> true (empty list matches everything)
+     *
+     * @param sentence Cannot be null.
+     * @param words Cannot be null, but can be empty.
+     * @return True if all words are present in the sentence, ignoring case.
+     */
+    public static boolean containsAllWordsIgnoreCase(String sentence, List<String> words) {
+        requireNonNull(sentence);
+        requireNonNull(words);
+
+        String[] wordsInSentence = sentence.split("\\s+");
+        return words.stream()
+                .allMatch(word -> {
+                    checkArgument(!word.trim().isEmpty(), "Word parameter cannot be empty");
+                    return Arrays.stream(wordsInSentence)
+                            .anyMatch(sentenceWord -> sentenceWord.equalsIgnoreCase(word.trim()));
+                });
     }
 }

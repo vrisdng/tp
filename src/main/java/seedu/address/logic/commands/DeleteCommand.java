@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
-import seedu.address.ui.UiManager;
 
 /**
  * Deletes students based on a specified field and value.
@@ -62,11 +64,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        // Create a predicate to find matching persons
-        PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(field, List.of(keyword));
-        List<Person> personsToDelete = lastShownList.stream()
+        // Split the keyword into individual words for the name field
+        List<String> processedKeywords = field.equalsIgnoreCase(PREFIX_NAME.getPrefix())
+                ? Arrays.asList(keyword.split("\\s+"))
+                : Collections.singletonList(keyword);
+
+        PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(field, processedKeywords, true);
+
+        List<Person> personsToDelete = model.getFilteredPersonList().stream()
                 .filter(predicate)
                 .collect(Collectors.toList());
 
@@ -74,12 +80,9 @@ public class DeleteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_PERSON_FOUND, field + " " + keyword));
         }
 
-        // Delete all matching persons
         for (Person person : personsToDelete) {
             model.deletePerson(person);
         }
-
-        UiManager.refreshPersonListPanel(); // Update UI after deletion
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personsToDelete.size()));
     }

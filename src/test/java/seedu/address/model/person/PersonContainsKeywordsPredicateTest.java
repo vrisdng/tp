@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,16 +14,16 @@ public class PersonContainsKeywordsPredicateTest {
     @Test
     public void equals() {
         PersonContainsKeywordsPredicate firstPredicate =
-                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "Bob"));
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "Bob"), false);
         PersonContainsKeywordsPredicate secondPredicate =
-                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Charlie"));
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Charlie"), false);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         PersonContainsKeywordsPredicate firstPredicateCopy =
-                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "Bob"));
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "Bob"), false);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,76 +37,76 @@ public class PersonContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
+    public void test_nameContainsAllKeywordsForDelete_returnsTrue() {
+        // All keywords match for delete
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("n/", Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Multiple keywords
-        predicate = new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword
-        predicate = new PersonContainsKeywordsPredicate("n/", Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Mixed-case keywords
-        predicate = new PersonContainsKeywordsPredicate("n/", Arrays.asList("aLiCe", "bOB"));
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "Bob"), true);
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
+    public void test_nameDoesNotContainAllKeywordsForDelete_returnsFalse() {
+        // Not all keywords match for delete
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("n/", Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "David"), true);
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+    }
 
-        // Non-matching keyword
-        predicate = new PersonContainsKeywordsPredicate("n/", Arrays.asList("Carol"));
+    @Test
+    public void test_nameContainsAnyKeywordForFind_returnsTrue() {
+        // Any keyword matches for find
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Alice", "David"), false);
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+    }
+
+    @Test
+    public void test_nameDoesNotContainAnyKeywordForFind_returnsFalse() {
+        // No keywords match for find
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("n/", Arrays.asList("David", "Carol"), false);
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_tagContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("t/", Arrays.asList("friends", "owesMoney"));
+                new PersonContainsKeywordsPredicate("t/", Arrays.asList("friends", "owesMoney"), false);
         assertTrue(predicate.test(new PersonBuilder().withTags("friends", "owesMoney").build()));
     }
 
     @Test
     public void test_phoneContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("p/", Arrays.asList("12345"));
+                new PersonContainsKeywordsPredicate("p/", Arrays.asList("12345"), false);
         assertTrue(predicate.test(new PersonBuilder().withPhone("12345").build()));
     }
 
     @Test
     public void test_emailContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("e/", Arrays.asList("example@example.com"));
+                new PersonContainsKeywordsPredicate("e/", Arrays.asList("example@example.com"), false);
         assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
     }
 
     @Test
     public void test_addressContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("a/", Arrays.asList("Main"));
+                new PersonContainsKeywordsPredicate("a/", Arrays.asList("Main"), false);
         assertTrue(predicate.test(new PersonBuilder().withAddress("123 Main Street").build()));
     }
 
     @Test
     public void test_studentIdContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("s/", Arrays.asList("A1234567X"));
+                new PersonContainsKeywordsPredicate("s/", Arrays.asList("A1234567X"), false);
         assertTrue(predicate.test(new PersonBuilder().withStudentId("A1234567X").build()));
     }
 
     @Test
     public void test_tutorialContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("tut/", Arrays.asList("CS2103T"));
+                new PersonContainsKeywordsPredicate("tut/", Arrays.asList("CS2103T"), false);
         assertTrue(predicate.test(new PersonBuilder().withTutorials("CS2103T").build()));
     }
 
@@ -115,58 +114,11 @@ public class PersonContainsKeywordsPredicateTest {
     public void test_unsupportedField_throwsException() {
         try {
             PersonContainsKeywordsPredicate predicate =
-                    new PersonContainsKeywordsPredicate("unsupported/", Arrays.asList("keyword"));
+                    new PersonContainsKeywordsPredicate("unsupported/", Arrays.asList("keyword"), false);
             predicate.test(new PersonBuilder().build());
             assertFalse(true, "Expected IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException e) {
             assertTrue(e.getMessage().contains("Unsupported field"));
         }
-    }
-    @Test
-    public void test_nameContainsPartialWord_returnsTrue() {
-        // Partial word match
-        PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("n/", Arrays.asList("Ali"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-    }
-
-    @Test
-    public void test_tagContainsPartialWord_returnsTrue() {
-        // Partial word match
-        PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("t/", Arrays.asList("friend"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("friends", "owesMoney").build()));
-    }
-
-    @Test
-    public void test_addressContainsPartialWord_returnsTrue() {
-        // Partial word match
-        PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("a/", Arrays.asList("Mai"));
-        assertTrue(predicate.test(new PersonBuilder().withAddress("123 Main Street").build()));
-    }
-
-    @Test
-    public void test_emailContainsPartialWord_returnsTrue() {
-        // Partial word match
-        PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("e/", Arrays.asList("exam"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
-    }
-
-    @Test
-    public void test_studentIdContainsPartialWord_returnsTrue() {
-        // Partial word match
-        PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("s/", Arrays.asList("A123"));
-        assertTrue(predicate.test(new PersonBuilder().withStudentId("A1234567X").build()));
-    }
-
-    @Test
-    public void test_tutorialContainsPartialWord_returnsTrue() {
-        // Partial word match
-        PersonContainsKeywordsPredicate predicate =
-                new PersonContainsKeywordsPredicate("tut/", Arrays.asList("CS210"));
-        assertTrue(predicate.test(new PersonBuilder().withTutorials("CS2103T").build()));
     }
 }

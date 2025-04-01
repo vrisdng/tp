@@ -140,53 +140,70 @@ Examples:
 
 ### Locating persons by attributes: `find`
 
-Finds persons whose attributes match any of the given keywords.
+Finds persons whose fields match any of the given keywords.
+Only one field is allowed in each `find`.
 
 Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g., `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g., `Hans Bo` will match `Bo Hans`.
-* Only full words will be matched. e.g., `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e., `OR` search).
-* Supported prefixes:
-  * `n/` - Search by name
-  * `p/` - Search by phone number
-  * `e/` - Search by email
-  * `a/` - Search by address
-  * `t/` - Search by tags
-  * `s/` - Search by student ID
-  * `tut/` - Search by tutorials
+* The order of the keywords for name does not matter. e.g., `Hans Bo` will match `Bo Hans`.
+* Supported prefixes and their behavior:
+  * `n/` - **Search by name**: Only full words will be matched. Partial matches are not supported.  
+    Example:  
+    - `find n/John` returns `John Doe` but not `Johnny` or `Jonathan`.
+  * `p/` - **Search by phone number**: Partial matches are supported.  
+    Example:  
+    - `find p/123` returns people with phone number `12345` and `91234567`.
+  * `e/` - **Search by email**: Partial matches are supported.  
+    Example:  
+    - `find e/example` returns people with email `example@example.com` and `test@example.com`.
+  * `a/` - **Search by address**: Partial matches are supported.  
+    Example:  
+    - `find a/Main` returns people with address `123 Main Street` and `Main Avenue`.
+  * `t/` - **Search by tags**: Only full words will be matched. Partial matches are not supported.  
+    Example:  
+    - `find t/friend` returns all persons tagged as `friend` but not `best-friend`.
+  * `s/` - **Search by student ID**: Partial matches are supported.  
+    Example:  
+    - `find s/A1234567X` returns the person with student ID `A1234567X` and `A4561237E`.
+  * `tut/` - **Search by tutorials**: Only full words will be matched. Partial matches are not supported.  
+    Example:  
+    - `find tut/CS2103T` returns all persons in the tutorial `CS2103T` but not `CS2103`.
 
-Examples:
-* `find n/John` returns `John Doe` and `Johnny Bravo`.
-* `find t/friend` returns all persons tagged as `friend`.
-* `find tut/CS2103T` returns all persons with tutorial `CS2103T`.
-* `find n/Ali` returns `Alice Pauline` (partial match).
+![Sample output for 'find tut/CS2103T'](images/FindTut2103T.png)
 
-![Sample output for 'find tut/CS2103T'](images\FindTut2103T.png)
-
-### Deleting a person/ a group of people : `delete`
+### Deleting a person or a group of people: `delete`
 
 Deletes students from the address book based on the specified field and value.
 
 Format: `delete PREFIX KEYWORD`
 
 * Deletes all students whose specified field matches the given keyword.
-* Supported prefixes:
-  * `n/` - Delete by name
-  * `p/` - Delete by phone number
-  * `e/` - Delete by email
-  * `a/` - Delete by address
-  * `t/` - Delete by tags
-  * `s/` - Delete by student ID
-  * `tut/` - Delete by tutorials
 * The search is case-insensitive. e.g., `alice` will match `Alice`.
-* Partial word will be also be matched. e.g., `Ali` will match `Alice`.
+* Supported prefixes and their behavior:
+  * `n/` - **Delete by name**: Only full words will be matched. Partial matches are not supported.
+    Example:  
+    - `delete n/John` deletes all students with names containing `John`, such as `John Doe`, but no `Johnny`, and `Johnathan`.
+    - `delete n/John Mayer` deletes the student with name `John Mayer`
+  * `p/` - **Delete by phone number**: This field is not supported.
+  * `e/` - **Delete by email**: Partial matches are supported.  
+    Example:  
+    - `delete e/example` deletes all students with emails containing `example`, such as `example@example.com` and `test@example.com`.
+  * `a/` - **Delete by address**: This field is not supported.
+  * `t/` - **Delete by tags**: Only full words will be matched. Partial matches are not supported.  
+    Example:  
+    - `delete t/friend` deletes all students tagged as `friend` but not `best-friend`.
+  * `s/` - **Delete by student ID**: Only full words will be matched. Partial matches are not supported.  
+    Example:  
+    - `delete s/A1234567X` deletes the student with the exact student ID `A1234567X`.
+  * `tut/` - **Delete by tutorials**: Only full words will be matched. Partial matches are not supported.  
+    Example:  
+    - `delete tut/CS2103T` deletes all students in the tutorial `CS2103T` but not `CS2103`.
 
 Examples:
-* `delete n/John` - Deletes all students with the name `John`, including `Johny`, `Johnathan`, ect.
+* `delete n/John` - Deletes all students with names containing `John`, such as `John Doe`, `Johnny`, and `Johnathan`.
 * `delete t/friends` - Deletes all students tagged as `friends`.
-* `delete s/A1234567X` - Deletes the student with the student ID `A1234567X`.
+* `delete s/A1234567X` - Deletes the student with the exact student ID `A1234567X`.
 * `delete tut/CS2103T` - Deletes all students in the tutorial `CS2103T`.
 
 ### Clearing all entries : `clear`

@@ -1,10 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
@@ -50,11 +48,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @return {@code true} if the field is valid, {@code false} otherwise.
      */
     private boolean isValidField(String field) {
+        // Only support the following fields for deletion
+        // - Name (n/)
+        // - Email (e/)
+        // - Student ID (s/)
+        // - Tutorial (t/)
         return field.equals(PREFIX_NAME.getPrefix())
                 || field.equals(PREFIX_TAG.getPrefix())
-                || field.equals(PREFIX_PHONE.getPrefix())
                 || field.equals(PREFIX_EMAIL.getPrefix())
-                || field.equals(PREFIX_ADDRESS.getPrefix())
                 || field.equals(PREFIX_STUDENT_ID.getPrefix())
                 || field.equals(PREFIX_TUTORIAL.getPrefix());
     }
