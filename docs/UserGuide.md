@@ -99,9 +99,27 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the address book. You can customize the fields displayed in the person cards using prefixes.
 
-Format: `list`
+Format: `list [PREFIX]...`
+
+* If no prefixes are provided, all fields will be displayed by default.
+* Supported prefixes:
+  * `n/` - Show name
+  * `p/` - Show phone number
+  * `e/` - Show email
+  * `a/` - Show address
+  * `s/` - Show student ID
+  * `t/` - Show tags
+  * `tut/` - Show tutorials
+* You can combine multiple prefixes to display specific fields.
+
+Examples:
+* `list` - Displays all persons with all fields.
+* `list n/ p/` - Displays all persons with only their name and phone number.
+* `list n/ e/ t/` - Displays all persons with their name, email, and tags.
+
+![Sample output for list n/ e/ t/](images/listnet.png)
 
 ### Editing a person : `edit`
 
@@ -120,37 +138,56 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by attributes: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose attributes match any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The search is case-insensitive. e.g., `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g., `Hans Bo` will match `Bo Hans`.
+* Only full words will be matched. e.g., `Han` will not match `Hans`.
+* Persons matching at least one keyword will be returned (i.e., `OR` search).
+* Supported prefixes:
+  * `n/` - Search by name
+  * `p/` - Search by phone number
+  * `e/` - Search by email
+  * `a/` - Search by address
+  * `t/` - Search by tags
+  * `s/` - Search by student ID
+  * `tut/` - Search by tutorials
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/John` returns `John Doe` and `Johnny Bravo`.
+* `find n/alex david` returns `Alex Yeoh` and `David Li`.
+* `find t/friend` returns all persons tagged as `friend`.
+* `find tut/CS2103T` returns all persons with tutorial `CS2103T`.
+
+![Sample output for find tut/CS2103T](images\FindTut2103T.png)
+
+### Deleting a person/ a group of people : `delete`
+
+Deletes students from the address book based on the specified field and value.
+
+Format: `delete PREFIX KEYWORD`
+
+* Deletes all students whose specified field matches the given keyword.
+* Supported prefixes:
+  * `n/` - Delete by name
+  * `p/` - Delete by phone number
+  * `e/` - Delete by email
+  * `a/` - Delete by address
+  * `t/` - Delete by tags
+  * `s/` - Delete by student ID
+  * `tut/` - Delete by tutorials
+* The search is case-insensitive. e.g., `alice` will match `Alice`.
+* Only full words will be matched. e.g., `Ali` will not match `Alice`.
+
+Examples:
+* `delete n/John` - Deletes all students with the name `John`.
+* `delete t/friends` - Deletes all students tagged as `friends`.
+* `delete s/A1234567X` - Deletes the student with the student ID `A1234567X`.
+* `delete tut/CS2103T` - Deletes all students in the tutorial `CS2103T`.
 
 ### Clearing all entries : `clear`
 
@@ -206,8 +243,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete PREFIX KEYWORD`<br> e.g., `delete n/John`, `delete t/friends`, `delete s/A1234567X`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Find** | `find PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/John`, `find t/friend`, `find tut/CS2103T`
+**List** | `list [PREFIX]...`<br> e.g., `list`, `list n/ p/`, `list n/ e/ t/`
 **Help** | `help`
