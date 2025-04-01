@@ -11,13 +11,7 @@ public class DisplayPreferencesTest {
     @AfterEach
     public void resetDisplayPreferences() {
         // Reset all display preferences to their default values after each test
-        DisplayPreferences.setShowName(true);
-        DisplayPreferences.setShowPhone(true);
-        DisplayPreferences.setShowEmail(true);
-        DisplayPreferences.setShowAddress(true);
-        DisplayPreferences.setShowStudentId(true);
-        DisplayPreferences.setShowTags(true);
-        DisplayPreferences.setShowTutorials(true);
+        DisplayPreferences.resetToDefault();
     }
 
     @Test
@@ -88,9 +82,34 @@ public class DisplayPreferencesTest {
 
     @Test
     public void testSetShowTutorials() {
+        // Test setting and getting showTutorials
         DisplayPreferences.setShowTutorials(false);
         assertFalse(DisplayPreferences.isShowTutorials());
         DisplayPreferences.setShowTutorials(true);
+        assertTrue(DisplayPreferences.isShowTutorials());
+    }
+
+    @Test
+    public void testResetToDefault() {
+        // Change all preferences to non-default values
+        DisplayPreferences.setShowName(false);
+        DisplayPreferences.setShowPhone(false);
+        DisplayPreferences.setShowEmail(false);
+        DisplayPreferences.setShowAddress(false);
+        DisplayPreferences.setShowStudentId(false);
+        DisplayPreferences.setShowTags(false);
+        DisplayPreferences.setShowTutorials(false);
+
+        // Call resetToDefault
+        DisplayPreferences.resetToDefault();
+
+        // Verify that all preferences are reset to their default values
+        assertTrue(DisplayPreferences.isShowName());
+        assertTrue(DisplayPreferences.isShowPhone());
+        assertTrue(DisplayPreferences.isShowEmail());
+        assertTrue(DisplayPreferences.isShowAddress());
+        assertTrue(DisplayPreferences.isShowStudentId());
+        assertTrue(DisplayPreferences.isShowTags());
         assertTrue(DisplayPreferences.isShowTutorials());
     }
 }
