@@ -36,6 +36,10 @@ public class ListCommand extends Command {
      */
     public ListCommand(boolean showName, boolean showPhone, boolean showEmail, boolean showAddress,
                        boolean showStudentId, boolean showTags, boolean showTutorials) {
+        // Ensure at least one display preference is true
+        assert showName || showPhone || showEmail || showAddress || showStudentId || showTags || showTutorials
+                : "At least one display preference must be true";
+
         this.showName = showName;
         this.showPhone = showPhone;
         this.showEmail = showEmail;
@@ -57,10 +61,19 @@ public class ListCommand extends Command {
         DisplayPreferences.setShowTags(showTags);
         DisplayPreferences.setShowTutorials(showTutorials);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // Assertions to ensure valid state
+        assert DisplayPreferences.isShowName() == showName : "DisplayPreferences for name is incorrect";
+        assert DisplayPreferences.isShowPhone() == showPhone : "DisplayPreferences for phone is incorrect";
+        assert DisplayPreferences.isShowEmail() == showEmail : "DisplayPreferences for email is incorrect";
+        assert DisplayPreferences.isShowAddress() == showAddress : "DisplayPreferences for address is incorrect";
+        assert DisplayPreferences.isShowStudentId() == showStudentId : "DisplayPreferences for student ID is incorrect";
+        assert DisplayPreferences.isShowTags() == showTags : "DisplayPreferences for tags is incorrect";
+        assert DisplayPreferences.isShowTutorials() == showTutorials : "DisplayPreferences for tutorials is incorrect";
 
-        // Update UI
+        // Update the filtered person list and refresh the UI
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         UiManager.refreshPersonListPanel();
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
     @Override
