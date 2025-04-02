@@ -27,7 +27,8 @@ public class DeleteCommandTest {
     @Test
     public void execute_validNameUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand("n/", personToDelete.getName().fullName);
+        String[] nameKeywords = personToDelete.getName().fullName.split("\\s+"); // Split name into keywords
+        DeleteCommand deleteCommand = new DeleteCommand("n/", String.join(" ", nameKeywords));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, 1);
 

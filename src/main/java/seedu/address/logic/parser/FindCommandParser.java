@@ -53,7 +53,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             PREFIX_TUTORIAL }) {
             if (!argMultimap.getAllValues(prefix).isEmpty()) {
                 String field = prefix.getPrefix();
-                return new FindCommand(new PersonContainsKeywordsPredicate(field, argMultimap.getAllValues(prefix)));
+                return new FindCommand(
+                    new PersonContainsKeywordsPredicate(field, argMultimap.getAllValues(prefix), false));
             }
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

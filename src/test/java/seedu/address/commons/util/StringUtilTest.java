@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -139,5 +140,33 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
+    @Test
+    public void containsAllWordsIgnoreCase_validInputs_correctResult() {
+        // All words match
+        assertTrue(StringUtil.containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("Alice", "Charlie")));
+
+        // One word does not match
+        assertFalse(StringUtil.containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("Alice", "David")));
+
+        // Partial word match (not allowed)
+        assertFalse(StringUtil.containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("Ali")));
+
+        // Case-insensitive match
+        assertTrue(StringUtil.containsAllWordsIgnoreCase("Alice Bob Charlie", Arrays.asList("alice", "CHARLIE")));
+
+        // Sentence with extra spaces
+        assertTrue(StringUtil.containsAllWordsIgnoreCase("  Alice   Bob   Charlie  ",
+                Arrays.asList("Alice", "Charlie")));
+
+        // Words with leading/trailing spaces
+        assertTrue(StringUtil.containsAllWordsIgnoreCase("Alice Bob Charlie",
+                Arrays.asList("  Alice  ", " Charlie ")));
+
+        // Sentence with symbols/numbers
+        assertTrue(StringUtil.containsAllWordsIgnoreCase("Alice123 Bob@Charlie",
+                Arrays.asList("Alice123", "Bob@Charlie")));
+    }
+
+
 
 }
