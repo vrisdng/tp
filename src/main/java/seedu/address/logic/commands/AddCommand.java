@@ -29,8 +29,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STUDENT_ID + "STUDENT_ID "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_TUTORIAL + "TUTORIAL]"
-            + "[" + PREFIX_ADDRESS + "ADDRESS]...\n "
+            + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney "
             + PREFIX_TUTORIAL + "CS2103T "
             + PREFIX_TUTORIAL + "CS2101 "
-            + PREFIX_ADDRESS + "Kent Ridge ";
+            + PREFIX_ADDRESS + " Kent Ridge ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";

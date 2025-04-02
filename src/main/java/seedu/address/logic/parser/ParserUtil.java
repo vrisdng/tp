@@ -76,10 +76,6 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        // Change: Allow empty address as valid (optional field)
-        if (trimmedAddress.isEmpty()) {
-            return new Address(""); // default empty address
-        }
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }

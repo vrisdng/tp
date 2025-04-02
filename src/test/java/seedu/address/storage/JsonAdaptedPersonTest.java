@@ -15,7 +15,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 
@@ -98,12 +97,12 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_blankAddress_returnsPersonWithEmptyAddress() throws Exception {
+    public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, " ",
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
                     VALID_STUDENT_ID, VALID_TAGS, VALID_TUTORIALS);
-        Person modelPerson = person.toModelType();
-        assertEquals(new Address(" "), modelPerson.getAddress());
+        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test

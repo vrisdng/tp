@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -16,7 +15,14 @@ public class AddressTest {
 
     @Test
     public void isValidAddress() {
+        // null address
+        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
+
+        // invalid addresses
+        assertFalse(Address.isValidAddress(" ")); // spaces only
+
         // valid addresses
+        assertTrue(Address.isValidAddress("")); // empty string
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
@@ -40,19 +46,5 @@ public class AddressTest {
 
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
-    }
-
-    @Test
-    public void isValidAddress_validAddresses_returnTrue() {
-        // Empty address is now allowed.
-        assertTrue(Address.isValidAddress(""));
-        // A typical non-empty address.
-        assertTrue(Address.isValidAddress("123, Main Street"));
-    }
-
-    @Test
-    public void constructor_blankAddress_createsEmptyAddress() {
-        Address address = new Address("");
-        assertEquals("", address.toString());
     }
 }

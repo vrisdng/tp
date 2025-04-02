@@ -33,12 +33,11 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, StudentId studentId, Set<Tutorial> tutorials) {
-        requireAllNonNull(name, phone, email, tags, studentId);
-        // Change: If address is null, use default empty address.
-        this.address = address != null ? address : new Address("");
+        requireAllNonNull(name, phone, email, address, tags, studentId);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.address = address;
         this.tags.addAll(tags);
         this.studentId = studentId;
         this.tutorials.addAll(tutorials);
