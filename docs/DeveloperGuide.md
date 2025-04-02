@@ -339,39 +339,65 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+**Initial launch**
 
-    1. Download the jar file and copy into an empty folder
+    1. Ensure you have Java `17` or above installed on your Computer. You can learn how to do so [here](https://www.java.com/en/download/help/download_options.html)
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Download the latest `addressbook.jar` from [here](https://github.com/AY2425S2-CS2103T-F14-1/tp/releases).
 
-1. Saving window preferences
+    3. Copy the file to the folder you want to use as the _home folder_ for your addressbook. 
+
+    4. Open a command terminal or learn how to do so [here](https://www.freecodecamp.org/news/command-line-for-beginners/)
+
+    5. Type `cd/[YOUR_FOLDER_LOCATION]`. The `FOLDER_LOCATION` should be the folder where yout put the jar file in. Find out more [here](https://www.wikihow.com/Change-Directories-in-Command-Prompt)
+
+    6. Type `java -jar addressbookv1.5.jar` and press Enter to launch Java and run the application. A GUI should appear in a few seconds.
+
+**Shutdown**
+
+    - Type `exit` in the command box to close the application.
+
+    - OR click the `File` button and select `Exit` from the dropdown menu.
+
+**Saving window preferences**
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    a. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
+    b. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    c. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    d. Test case: `delete n/[NAME]` <br>
+       Expected: The person with the name [NAME] should be deleted. Similar to other fields.
+
+    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    a. To simulate a missing file:
+       - Manually rename or remove the data file (e.g., addressbook.json).
+       - Launch the application.
+       - Expected Behavior: The app should detect the absence of the file, recreate it with default data, and log a warning message.
+
+    b. To simulate a corrupted file:
+       - Open the data file (e.g., addressbook.json) in a text editor.
+       - Modify its content so that it is not valid JSON (e.g., delete or alter key structural elements).
+       - Launch the application.
+       - Expected Behavior: The app should notify the user about the corrupted file, attempt to restore data from a backup if available, or reset to a default state while logging the error.
 
 ---------------------------------------------------------------------------------------------------------------------
 
