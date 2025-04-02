@@ -37,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2425S2-CS2103T-F14-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2425S2-CS2103T-F14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -54,7 +54,7 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/DeleteArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -94,7 +94,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete n/Alice` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -380,4 +380,19 @@ testers are expected to do more *exploratory* testing.
 ---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
+
+**Team Size:** 4
+
+1. **Make email field unique and follows NUS email format**: Currently, the add command allows the same email to be added,
+and it does not have to follow NUS email format (@nus.edu.sg). We plan to improve it by making the email field unique,
+and only NUS email can be added.
+
+
+2. **Make tutorial field follow NUS courses format**: Currently, the tutorial can just take in any string, not necessarily 
+in the format of a course code (e.g CS2103T). We plan to improve it by making it follow NUS course code format.<br>
+
+
+3. **List all students after delete command**: If a user use the find command to filter out a student, and then use delete
+command to delete the student, the app will display a blank list. We plan to update it to display the whole list after
+the delete command is called.<br>
 
