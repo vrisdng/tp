@@ -9,7 +9,8 @@ import static java.util.Objects.requireNonNull;
 public class Telegram {
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram handles should be 5 to 32 characters long and can only "
-                    + "contain alphanumeric characters and underscores.";
+                    + "contain alphanumeric characters and underscores.\n"
+                    + "You do not need to include '@'.";
     public final String value;
 
     /**

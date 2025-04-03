@@ -97,6 +97,38 @@ public class PersonContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_telegramFullMatchForDelete_returnsTrue() {
+        // For delete, should only return true when the full telegram handle is provided.
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("te/", Arrays.asList("example"), true);
+        assertTrue(predicate.test(new PersonBuilder().withTelegram("example").build()));
+    }
+
+    @Test
+    public void test_telegramPartialMatchForDelete_returnsFalse() {
+        // For delete, partial keywords should not match.
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("te/", Arrays.asList("exam"), true);
+        assertFalse(predicate.test(new PersonBuilder().withTelegram("example").build()));
+    }
+
+    @Test
+    public void test_telegramPartialMatchForFind_returnsTrue() {
+        // For find, partial matching is allowed.
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("te/", Arrays.asList("tele"), false);
+        assertTrue(predicate.test(new PersonBuilder().withTelegram("telegram").build()));
+    }
+
+    @Test
+    public void test_telegramNoMatchForFind_returnsFalse() {
+        // For find, if no keyword matches, it should return false.
+        PersonContainsKeywordsPredicate predicate =
+                new PersonContainsKeywordsPredicate("te/", Arrays.asList("nonexistent"), false);
+        assertFalse(predicate.test(new PersonBuilder().withTelegram("telegram").build()));
+    }
+
+    @Test
     public void test_studentIdContainsKeywords_returnsTrue() {
         PersonContainsKeywordsPredicate predicate =
                 new PersonContainsKeywordsPredicate("s/", Arrays.asList("A1234567X"), false);
