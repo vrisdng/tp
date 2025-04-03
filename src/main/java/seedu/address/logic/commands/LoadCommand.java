@@ -36,7 +36,14 @@ public class LoadCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Path dataFolderPath = model.getUserPrefs().getAddressBookFilePath().getParent();
-        Path filePath = dataFolderPath.resolve(fileName + ".json");
+        Path filePath;
+
+        // Check if the file name ends with ".json" and remove it if necessary
+        if (fileName.endsWith(".json")) {
+            filePath = dataFolderPath.resolve(fileName);
+        } else {
+            filePath = dataFolderPath.resolve(fileName + ".json");
+        }
 
         // Logic to load the file
         if (!filePath.toFile().exists()) {
