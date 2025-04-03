@@ -36,4 +36,28 @@ public class SaveCommandTest {
         Files.deleteIfExists(expectedFilePath);
         Files.deleteIfExists(tempDirectory);
     }
+
+    @Test
+    public void execute_saveCommand_createsFileEndWithJson() throws Exception {
+        // Setup
+        Model model = new ModelManager();
+        UserPrefs userPrefs = new UserPrefs();
+        Path tempDirectory = Files.createTempDirectory("testSaveCommand");
+        userPrefs.setAddressBookFilePath(tempDirectory.resolve("addressbook.json"));
+        model.setUserPrefs(userPrefs);
+
+        String testFileName = "testSaveFile.json";
+        SaveCommand saveCommand = new SaveCommand(testFileName);
+
+        // Execute
+        saveCommand.execute(model);
+
+        // Verify
+        Path expectedFilePath = tempDirectory.resolve(testFileName);
+        assertTrue(Files.exists(expectedFilePath), "File should exist after SaveCommand execution");
+
+        // Cleanup
+        Files.deleteIfExists(expectedFilePath);
+        Files.deleteIfExists(tempDirectory);
+    }
 }
