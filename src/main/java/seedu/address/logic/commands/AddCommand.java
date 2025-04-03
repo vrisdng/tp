@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney "
             + PREFIX_TUTORIAL + "CS2103T "
             + PREFIX_TUTORIAL + "CS2101 "
-            + PREFIX_ADDRESS + " Kent Ridge ";
+            + PREFIX_ADDRESS + "Kent Ridge ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
