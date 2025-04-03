@@ -9,22 +9,17 @@ You can reach us at the email `e1155383@u.nus.edu`
 
 ## Project team
 
-
-* Role: Project Developer
-* Responsibilities: UI
-
 ### Le Tu Quoc Dat
 
 <img src="images/datletu.png" width="200px">
 
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 
 [[github](https://github.com/datletu)]
 [[portfolio](team/leTuQuocDat.md)]
 
 
 * Role: Project Advisor
+* * Responsibilities: UI
 
 ### Duong Ngoc Mai
 
@@ -56,6 +51,9 @@ You can reach us at the email `e1155383@u.nus.edu`
 
 [[github](http://github.com/jodielzy)]
 [[portfolio](team/jodie.md)]
+
+* Role: Developer
+* Responsibilities: Code + Documentation
 
 
 
