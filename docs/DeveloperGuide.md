@@ -399,6 +399,45 @@ testers are expected to do more *exploratory* testing.
        - Launch the application.
        - Expected Behavior: The app should notify the user about the corrupted file, attempt to restore data from a backup if available, or reset to a default state while logging the error.
 
+
+
+### Saving, Loading, and Managing Files
+
+1. **Saving the current address book data**
+
+    a. Test case: `save [FILENAME]`  <br>
+        Expected: The current address book data is saved to a file named `[FILENAME].json` in the default directory. A success message is displayed in the status bar.
+
+    b. Test case: `save`  <br>
+        Expected: Error message displayed indicating that a filename is required.
+
+    c. Test case: `save invalid/filename`  <br>
+        Expected: Error message displayed indicating that the filename contains invalid characters.
+
+2. **Loading data from a file**
+
+    a. Prerequisites: Ensure a valid JSON file (e.g., `example.json`) exists in the default directory.
+
+    b. Test case: `load example`  <br>
+        Expected: The address book data is replaced with the contents of `example.json`. A success message is displayed in the status bar.
+
+    c. Test case: `load nonExistentFile`  <br>
+        Expected: Error message displayed indicating that the specified file does not exist.
+
+    d. Test case: `load corruptedFile`  <br>
+        Expected: Error message displayed indicating that the file is corrupted or invalid.
+
+3. **Listing all saved files**
+
+    a. Test case: `files`  <br>
+        Expected: A list of all saved files in the default directory is displayed in the result panel.
+
+    b. Test case: `files` when no files exist  <br>
+        Expected: A message indicating that no saved files are available is displayed.
+
+       
+
+
 ---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
