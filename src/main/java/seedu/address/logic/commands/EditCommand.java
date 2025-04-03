@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -29,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 
@@ -47,6 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -106,11 +109,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Tutorial> updatedTutorials = editPersonDescriptor.getTutorials().orElse(personToEdit.getTutorials());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                          updatedStudentId, updatedTutorials);
+                          updatedStudentId, updatedTutorials, updatedTelegram);
     }
 
     @Override
@@ -147,6 +151,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private StudentId studentId;
+        private Telegram telegram;
         private Set<Tag> tags;
         private Set<Tutorial> tutorials;
 
@@ -164,13 +169,14 @@ public class EditCommand extends Command {
             setStudentId(toCopy.studentId);
             setTags(toCopy.tags);
             setTutorials(toCopy.tutorials);
+            setTelegram(toCopy.telegram);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, studentId, tags, tutorials);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, studentId, tags, tutorials, telegram);
         }
 
         public void setName(Name name) {
@@ -211,6 +217,14 @@ public class EditCommand extends Command {
 
         public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(studentId);
+        }
+
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
+        }
+
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         /**
@@ -255,6 +269,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
+                    && Objects.equals(telegram, otherEditPersonDescriptor.telegram)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(tutorials, otherEditPersonDescriptor.tutorials);
         }
@@ -267,6 +282,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("studentId", studentId)
+                    .add("telegram", telegram)
                     .add("tags", tags)
                     .add("tutorials", tutorials)
                     .toString();

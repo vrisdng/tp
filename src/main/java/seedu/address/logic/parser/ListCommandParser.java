@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             PREFIX_NAME.getPrefix(), PREFIX_ADDRESS.getPrefix(),
             PREFIX_EMAIL.getPrefix(), PREFIX_PHONE.getPrefix(),
             PREFIX_STUDENT_ID.getPrefix(), PREFIX_TAG.getPrefix(),
-            PREFIX_TUTORIAL.getPrefix()
+            PREFIX_TUTORIAL.getPrefix(), PREFIX_TELEGRAM.getPrefix()
     ));
 
     /**
@@ -45,6 +46,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean showStudentId = true;
         boolean showTags = true;
         boolean showTutorial = true;
+        boolean showTelegram = true;
 
         if (!trimmedArgs.isEmpty()) {
             // Split arguments into tokens
@@ -65,9 +67,11 @@ public class ListCommandParser implements Parser<ListCommand> {
             showStudentId = Arrays.asList(tokens).contains(PREFIX_STUDENT_ID.getPrefix());
             showTags = Arrays.asList(tokens).contains(PREFIX_TAG.getPrefix());
             showTutorial = Arrays.asList(tokens).contains(PREFIX_TUTORIAL.getPrefix());
+            showTelegram = Arrays.asList(tokens).contains(PREFIX_TELEGRAM.getPrefix());
         }
 
 
-        return new ListCommand(showName, showPhone, showEmail, showAddress, showStudentId, showTags, showTutorial);
+        return new ListCommand(showName, showPhone, showEmail, showAddress, showStudentId,
+                showTags, showTutorial, showTelegram);
     }
 }

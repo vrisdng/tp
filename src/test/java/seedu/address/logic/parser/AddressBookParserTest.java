@@ -37,7 +37,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         // Clear tutorials explicitly so expected Person matches parsed Person.
-        Person person = new PersonBuilder().withStudentId("A1234567X").withTutorials().build();
+        Person person = new PersonBuilder().withStudentId("A1234567X").withTutorials().withTelegram("example").build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -59,7 +59,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().withStudentId("A1234567X").build();
+        Person person = new PersonBuilder().withStudentId("A1234567X").withTelegram("example").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         // Force expected descriptor's tags to be null (since no tag prefix is provided in the command)
         descriptor.setTags(null);
@@ -99,13 +99,13 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         ListCommand command = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD);
-        assertEquals(new ListCommand(true, true, true, true, true, true, true), command);
+        assertEquals(new ListCommand(true, true, true, true, true, true, true, true), command);
 
         command = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD + " n/ p/");
-        assertEquals(new ListCommand(true, true, false, false, false, false, false), command);
+        assertEquals(new ListCommand(true, true, false, false, false, false, false, false), command);
 
         command = (ListCommand) parser.parseCommand(ListCommand.COMMAND_WORD + " e/ a/ t/");
-        assertEquals(new ListCommand(false, false, true, true, false, true, false), command);
+        assertEquals(new ListCommand(false, false, true, true, false, true, false, false), command);
 
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(ListCommand.COMMAND_WORD + " invalidField"));

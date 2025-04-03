@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.List;
@@ -59,11 +60,24 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
         } else if (field.equalsIgnoreCase(PREFIX_ADDRESS.getPrefix())) {
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getAddress().value, keyword));
+        } else if (field.equalsIgnoreCase(PREFIX_TELEGRAM.getPrefix())) {
+            if (isDeleteOperation) {
+                // For delete, match the full telegram handle exactly
+                return keywords.stream()
+                        .anyMatch(keyword ->
+                                StringUtil.containsWordIgnoreCase(person.getTelegram().value, keyword));
+            } else {
+                // For find, allow partial matching of telegram handle
+                return keywords.stream()
+                        .anyMatch(keyword ->
+                                StringUtil.containsIgnoreCase(person.getTelegram().value, keyword));
+            }
         } else if (field.equalsIgnoreCase(PREFIX_STUDENT_ID.getPrefix())) {
             if (isDeleteOperation) {
                 // For delete, match full word for student ID
                 return keywords.stream()
-                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getStudentId().value, keyword));
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getStudentId().value,
+                                keyword));
             } else {
                 // For find, allow partial matches for student ID
                 return keywords.stream()

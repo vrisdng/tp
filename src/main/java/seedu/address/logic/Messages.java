@@ -45,7 +45,10 @@ public class Messages {
                 .append(person.getStudentId())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
+                .append("; Tags: ")
+                .append(person.getTelegram())
+                .append("; Telegram: ");
+
         person.getTags().forEach(tag -> builder.append(tag).append(" "));
         builder.append("; Tutorials: ");
         person.getTutorials().forEach(tutorial -> builder.append(tutorial).append(" "));

@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label studentId;
     @FXML
+    private Label telegram;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane tutorials;
@@ -82,6 +84,12 @@ public class PersonCard extends UiPart<Region> {
         studentId.setText(person.getStudentId().value);
         if (!DisplayPreferences.isShowStudentId()) {
             studentId.setVisible(false);
+        }
+
+        // Always set the text for the telegram label
+        telegram.setText(person.getTelegram().getDisplayValue());
+        if (!DisplayPreferences.isShowTelegram()) {
+            telegram.setVisible(false);
         }
 
         // Handle tags
