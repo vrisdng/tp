@@ -11,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 
@@ -41,6 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setStudentId(person.getStudentId());
         descriptor.setTags(person.getTags());
         descriptor.setTutorials(person.getTutorials());
+        descriptor.setTelegram(person.getTelegram());
     }
 
     /**
@@ -80,6 +82,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withStudentId(String studentId) {
         descriptor.setStudentId(new StudentId(studentId));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTelegram(String telegram) {
+        descriptor.setTelegram(new Telegram(telegram));
         return this;
     }
 

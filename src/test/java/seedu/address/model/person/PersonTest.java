@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -82,6 +83,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different telegram -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -95,7 +100,8 @@ public class PersonTest {
                 + ", address=" + ALICE.getAddress()
                 + ", tags=" + ALICE.getTags()
                 + ", studentId=" + ALICE.getStudentId()
-                + ", tutorials=" + ALICE.getTutorials() + "}";
+                + ", tutorials=" + ALICE.getTutorials()
+                + ", telegram=" + ALICE.getTelegram() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

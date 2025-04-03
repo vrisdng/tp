@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "studentId": "A1234567X",
+    "telegram": "alicepaul",
     "tags": [ "friends" ],
     "tutorials": [ "CS2103T" ]
   }, {
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "studentId": "A1234567X",
+    "telegram": "alicepaul",
     "tags": [ ],
     "tutorials": [ "CS2103T" ]
   } ]

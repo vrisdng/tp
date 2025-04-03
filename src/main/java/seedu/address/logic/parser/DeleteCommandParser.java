@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import seedu.address.logic.commands.DeleteCommand;
@@ -57,6 +58,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 || field.equals(PREFIX_TAG.getPrefix())
                 || field.equals(PREFIX_EMAIL.getPrefix())
                 || field.equals(PREFIX_STUDENT_ID.getPrefix())
-                || field.equals(PREFIX_TUTORIAL.getPrefix());
+                || field.equals(PREFIX_TUTORIAL.getPrefix())
+                || field.equals(PREFIX_TELEGRAM.getPrefix());
     }
 }

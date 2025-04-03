@@ -22,6 +22,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final StudentId studentId;
+    private final Telegram telegram;
 
     // Data fields
     private final Address address;
@@ -32,8 +33,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, StudentId studentId, Set<Tutorial> tutorials) {
-        requireAllNonNull(name, phone, email, address, tags, studentId);
+                  Set<Tag> tags, StudentId studentId, Set<Tutorial> tutorials, Telegram telegram) {
+        requireAllNonNull(name, phone, email, address, tags, studentId, telegram);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,6 +42,7 @@ public class Person {
         this.tags.addAll(tags);
         this.studentId = studentId;
         this.tutorials.addAll(tutorials);
+        this.telegram = telegram;
     }
 
     public Name getName() {
@@ -61,6 +63,10 @@ public class Person {
 
     public StudentId getStudentId() {
         return studentId;
+    }
+
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     /**
@@ -114,13 +120,14 @@ public class Person {
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
                 && studentId.equals(otherPerson.studentId)
+                && telegram.equals(otherPerson.telegram)
                 && tutorials.equals(otherPerson.tutorials);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, studentId, tutorials);
+        return Objects.hash(name, phone, email, address, tags, studentId, tutorials, telegram);
     }
 
     @Override
@@ -133,6 +140,7 @@ public class Person {
                 .add("tags", tags)
                 .add("studentId", studentId)
                 .add("tutorials", tutorials)
+                .add("telegram", telegram)
                 .toString();
     }
 

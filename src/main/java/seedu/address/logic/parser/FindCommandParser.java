@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.stream.Stream;
@@ -28,14 +29,14 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL);
+                PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL, PREFIX_TELEGRAM);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         long numPrefixesWithValues = Stream.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL)
+                        PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_TUTORIAL, PREFIX_TELEGRAM)
                 .filter(prefix -> !argMultimap.getAllValues(prefix).isEmpty())
                 .count();
 
@@ -50,6 +51,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             PREFIX_ADDRESS,
             PREFIX_TAG,
             PREFIX_STUDENT_ID,
+            PREFIX_TELEGRAM,
             PREFIX_TUTORIAL }) {
             if (!argMultimap.getAllValues(prefix).isEmpty()) {
                 String field = prefix.getPrefix();

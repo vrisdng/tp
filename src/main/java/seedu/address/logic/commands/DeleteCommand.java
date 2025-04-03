@@ -29,6 +29,7 @@ public class DeleteCommand extends Command {
         + "t/(Tag), "
         + "e/(Email), "
         + "s/(Student ID), "
+        + "te/(Telegram), "
         + "tut/(Tutorial)\n"
         + "Example: " + COMMAND_WORD + " n/Alice\n"
         + "Example: " + COMMAND_WORD + " t/friends\n"

@@ -5,6 +5,7 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "studentId": "A1234567X",
+    "telegram": "musterhanss",
     "tutorials": [ "CS2103T" ]
   } ]
 }

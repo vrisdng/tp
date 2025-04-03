@@ -11,6 +11,7 @@ public class DisplayPreferences {
     private static boolean showEmail = true;
     private static boolean showAddress = true;
     private static boolean showStudentId = true;
+    private static boolean showTelegram = true;
     private static boolean showTags = true;
     private static boolean showTutorials = true;
 
@@ -55,6 +56,14 @@ public class DisplayPreferences {
         DisplayPreferences.showStudentId = showStudentId;
     }
 
+    public static boolean isShowTelegram() {
+        return showTelegram;
+    }
+
+    public static void setShowTelegram(boolean showTelegram) {
+        DisplayPreferences.showTelegram = showTelegram;
+    }
+
     public static boolean isShowTags() {
         return showTags;
     }
@@ -79,6 +88,7 @@ public class DisplayPreferences {
         showEmail = true;
         showAddress = true;
         showStudentId = true;
+        showTelegram = true;
         showTags = true;
         showTutorials = true;
     }

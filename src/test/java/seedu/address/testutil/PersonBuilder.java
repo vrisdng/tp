@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.util.SampleDataUtil;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDENT_ID = "A1234569X";
+    public static final String DEFAULT_TELEGRAM = "amybeeeee";
     public static final String DEFAULT_TUTORIAL = "CS2103T";
 
     private Name name;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private StudentId studentId;
+    private Telegram telegram;
     private Set<Tutorial> tutorials;
 
     /**
@@ -43,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         studentId = new StudentId(DEFAULT_STUDENT_ID);
+        telegram = new Telegram(DEFAULT_TELEGRAM);
         tutorials = new HashSet<>();
         tutorials.add(new Tutorial(DEFAULT_TUTORIAL));
     }
@@ -58,6 +62,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         studentId = personToCopy.getStudentId();
         tutorials = new HashSet<>(personToCopy.getTutorials());
+        telegram = personToCopy.getTelegram();
     }
 
     /**
@@ -109,6 +114,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code StudentId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = new Telegram(telegram);
+        return this;
+    }
+
+    /**
      * Parses the {@code tutorials} into a {@code Set<Tutorial>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTutorials(String ... tutorials) {
@@ -117,7 +130,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, studentId, tutorials);
+        return new Person(name, phone, email, address, tags, studentId, tutorials, telegram);
     }
 
 }

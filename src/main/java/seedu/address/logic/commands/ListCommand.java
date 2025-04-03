@@ -20,7 +20,8 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in the address book. "
-            + "Parameters: [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STUDENT_ID] [t/TAG] [tut/TUTORIAL]\n"
+            + "Parameters: [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] "
+            + "[s/STUDENT_ID] [t/TAG] [tut/TUTORIAL] [te/TELEGRAM]\n"
             + "Example: " + COMMAND_WORD + " n/ p/ e/";
 
     private final boolean showName;
@@ -30,14 +31,16 @@ public class ListCommand extends Command {
     private final boolean showStudentId;
     private final boolean showTags;
     private final boolean showTutorials;
+    private final boolean showTelegram;
 
     /**
      * Creates a ListCommand to list all persons with the specified display preferences.
      */
     public ListCommand(boolean showName, boolean showPhone, boolean showEmail, boolean showAddress,
-                       boolean showStudentId, boolean showTags, boolean showTutorials) {
+                       boolean showStudentId, boolean showTags, boolean showTutorials, boolean showTelegram) {
         // Ensure at least one display preference is true
-        assert showName || showPhone || showEmail || showAddress || showStudentId || showTags || showTutorials
+        assert showName || showPhone || showEmail || showAddress || showStudentId || showTags
+                || showTutorials || showTelegram
                 : "At least one display preference must be true";
 
         this.showName = showName;
@@ -47,6 +50,7 @@ public class ListCommand extends Command {
         this.showStudentId = showStudentId;
         this.showTags = showTags;
         this.showTutorials = showTutorials;
+        this.showTelegram = showTelegram;
     }
     @Override
     public CommandResult execute(Model model) {
@@ -60,6 +64,7 @@ public class ListCommand extends Command {
         DisplayPreferences.setShowStudentId(showStudentId);
         DisplayPreferences.setShowTags(showTags);
         DisplayPreferences.setShowTutorials(showTutorials);
+        DisplayPreferences.setShowTelegram(showTelegram);
 
         // Assertions to ensure valid state
         assert DisplayPreferences.isShowName() == showName : "DisplayPreferences for name is incorrect";
@@ -69,6 +74,7 @@ public class ListCommand extends Command {
         assert DisplayPreferences.isShowStudentId() == showStudentId : "DisplayPreferences for student ID is incorrect";
         assert DisplayPreferences.isShowTags() == showTags : "DisplayPreferences for tags is incorrect";
         assert DisplayPreferences.isShowTutorials() == showTutorials : "DisplayPreferences for tutorials is incorrect";
+        assert DisplayPreferences.isShowTelegram() == showTelegram : "DisplayPreferences for telegram is incorrect";
 
         // Update the filtered person list and refresh the UI
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -90,12 +96,14 @@ public class ListCommand extends Command {
                 && showEmail == otherCommand.showEmail
                 && showAddress == otherCommand.showAddress
                 && showStudentId == otherCommand.showStudentId
+                && showTelegram == otherCommand.showTelegram
                 && showTags == otherCommand.showTags
                 && showTutorials == otherCommand.showTutorials;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(showName, showPhone, showEmail, showAddress, showStudentId, showTags, showTutorials);
+        return Objects.hash(showName, showPhone, showEmail, showAddress, showStudentId,
+                showTags, showTutorials, showTelegram);
     }
 }

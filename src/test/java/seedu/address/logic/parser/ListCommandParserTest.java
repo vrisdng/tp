@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -23,22 +24,23 @@ public class ListCommandParserTest {
     public void parse_noArguments_success() {
         // No arguments provided, default to showing all fields
         assertParseSuccess(parser, "",
-                new ListCommand(true, true, true, true, true, true, true));
+                new ListCommand(true, true, true, true, true, true, true, true));
     }
 
     @Test
     public void parse_allValidFields_success() {
         // All valid fields provided
         assertParseSuccess(parser, PREFIX_NAME + " " + PREFIX_PHONE + " " + PREFIX_EMAIL + " "
-                + PREFIX_ADDRESS + " " + PREFIX_STUDENT_ID + " " + PREFIX_TAG + " " + PREFIX_TUTORIAL,
-                new ListCommand(true, true, true, true, true, true, true));
+                + PREFIX_ADDRESS + " " + PREFIX_STUDENT_ID + " " + PREFIX_TAG + " " + PREFIX_TUTORIAL + " "
+                + PREFIX_TELEGRAM, new ListCommand(true, true, true,
+                true, true, true, true, true));
     }
 
     @Test
     public void parse_someValidFields_success() {
         // Only some valid fields provided
         assertParseSuccess(parser, PREFIX_NAME + " " + PREFIX_EMAIL + " " + PREFIX_TAG,
-                new ListCommand(true, false, true, false, false, true, false));
+                new ListCommand(true, false, true, false, false, true, false, false));
     }
 
     @Test
@@ -59,13 +61,13 @@ public class ListCommandParserTest {
     public void parse_duplicateFields_success() {
         // Duplicate valid fields should still succeed
         assertParseSuccess(parser, PREFIX_NAME + " " + PREFIX_NAME + " " + PREFIX_EMAIL + " " + PREFIX_EMAIL,
-                new ListCommand(true, false, true, false, false, false, false));
+                new ListCommand(true, false, true, false, false, false, false, false));
     }
 
     @Test
     public void parse_whitespaceOnly_success() {
         // Input with only whitespace should default to showing all fields
         assertParseSuccess(parser, "   ",
-                new ListCommand(true, true, true, true, true, true, true));
+                new ListCommand(true, true, true, true, true, true, true, true));
     }
 }

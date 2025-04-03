@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -33,6 +34,7 @@ public class FindCommand extends Command {
         + PREFIX_EMAIL.getPrefix() + " (email), "
         + PREFIX_ADDRESS.getPrefix() + " (address), "
         + PREFIX_STUDENT_ID.getPrefix() + " (id), "
+        + PREFIX_TELEGRAM.getPrefix() + "(telegram), "
         + PREFIX_TUTORIAL.getPrefix() + " (tutorial)\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + "john\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_TAG.getPrefix() + "owesMoney\n"
