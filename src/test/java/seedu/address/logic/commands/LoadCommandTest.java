@@ -23,4 +23,15 @@ public class LoadCommandTest {
         assertCommandFailure(loadCommand, model,
                 String.format(LoadCommand.MESSAGE_FILE_NOT_FOUND, fileName));
     }
+
+    @Test
+    public void execute_invalidFileWithJsonExtension_throwsCommandException() {
+        // Arrange
+        String fileName = "nonExistentFile.json";
+        LoadCommand loadCommand = new LoadCommand(fileName);
+
+        // Act & Assert
+        assertCommandFailure(loadCommand, model,
+                String.format(LoadCommand.MESSAGE_FILE_NOT_FOUND, fileName));
+    }
 }

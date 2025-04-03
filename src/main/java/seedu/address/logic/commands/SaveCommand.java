@@ -33,7 +33,14 @@ public class SaveCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         // Get the data folder path from UserPrefs and append the fileName
         Path dataFolderPath = model.getUserPrefs().getAddressBookFilePath().getParent();
-        Path filePath = dataFolderPath.resolve(fileName + ".json");
+        Path filePath;
+
+        // Check if the file name ends with ".json"
+        if (fileName.endsWith(".json")) {
+            filePath = dataFolderPath.resolve(fileName);
+        } else {
+            filePath = dataFolderPath.resolve(fileName + ".json");
+        }
 
         JsonAddressBookStorage jsonStorage = new JsonAddressBookStorage(filePath);
 
