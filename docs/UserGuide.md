@@ -230,6 +230,47 @@ Exits the program.
 
 Format: `exit`
 
+### Automatically saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. 
+
+### Saving the data manually : `save`
+
+Saves the current address book data to a specified file.
+
+Format: `save [FILE_NAME]`
+
+Examples:
+* `save backup` - Saves the data to `backup.json`.
+* `save backup.json` - Saves the data to `backup.json`.
+
+
+### Loading data from a file : `load`
+
+Loads address book data from a specified file.
+
+Format: `load [FILE_NAME]`
+
+* The file must be a valid JSON file containing address book data.
+* If the file is not found or the format is invalid, an error message will be displayed, and the current data will remain unchanged.
+
+Examples:
+* `load backup` - Loads data from `backup.json`.
+* `load backup.json` - Loads data from `backup.json`.
+
+
+### Listing all saved files : `files`
+
+Displays a list of all saved files in the application's data directory.
+
+Format: `files`
+
+* The command will list all files with their names and extensions.
+* Files are displayed in alphabetical order.
+
+Examples:
+* `files` - Displays all saved files in the data directory.
+=======
 ### Saving a current version of data : `save`
 
 Archives a copy of the current version of the list.
@@ -250,7 +291,7 @@ Example:
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### Editing the data file
 
@@ -260,6 +301,9 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
+
+
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
