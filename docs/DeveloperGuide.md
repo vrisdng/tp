@@ -1,9 +1,9 @@
 ---
 layout: page
-title: conTActs Developer Guide
+title: conTAct Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,12 +238,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -274,21 +268,18 @@ conTActs helps TAs efficiently organize and manage student information, reducing
 
 ### User Stories
 
-### Must have
-1. **As a TA, I can delete the contact details of a student, so that I can update my list of students.**
-2. **As a new TA, I can import a list of students and professors, so that I don’t have to manually enter all the contacts.**
-3. **As a TA, I can add the contact details of a student, so that I can keep track of my students.**
-4. **As a TA, I can list the contact details of all my students, so that I can display and view my list of students.**
-5. **As a TA, I can find a student’s contact information quickly, so that I can contact them conveniently.**
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-### Nice-to-Must-Have
-6. **As a TA, I can filter contacts by role (e.g., student, professor, admin), so that I can find relevant contacts easily.**
-7. **As a TA, I want an easily accessible contact list that I can divide into different folders based on different classes that I take over**
-8. **As a new TA, I want to send a message to multiple students at once, so that I can make announcements efficiently.**
+| Priority | As a …​     | I want to …​                     | So that I can…​                    |
+|---------|-------------| ------------------------------ | ---------------------------------- |
+| `* * *` | new TA      | import a list of students and professors    | don’t have to manually enter all the contacts. |
+| `* * `  | new TA      | send a message to multiple students at once |   make announcements efficien      |
+| `* * *` | TA          | delete the contact details of a student                | update my list of students         |
+| `* * *` | TA          | add the contact details of a student          | keep track of my students |
+| `* * *` | TA          | list the contact details of all my students   | display and view my list of students |
+| `* * *` | TA          | find a student’s contact information quickly           | contact them conveniently          |
+| `* * ` | TA          | filter contacts | find relevant contacts easily|
 
-### Nice-To-Have
-9. **As a veteran TA, I want to receive auto-suggestions for contacts based on past searches, so that I don’t have to type the full name.**
-10. **As a veteran TA, I want a way to randomly group up students**
 
 ### Excluded from Initial Release
 - Student self-service portal.
@@ -328,116 +319,279 @@ conTActs helps TAs efficiently organize and manage student information, reducing
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.</div>
 
-</div>
+---
 
-### Launch and shutdown
+### Launch and Shutdown
 
-**Initial launch**
+#### Initial Launch
 
-    1. Ensure you have Java `17` or above installed on your Computer. You can learn how to do so [here](https://www.java.com/en/download/help/download_options.html)
+1. Ensure you have Java `17` or above installed on your computer. You can learn how to do so [here](https://www.java.com/en/download/help/download_options.html).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F14-1/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for your address book.
+4. Open a command terminal (learn how to do so [here](https://www.freecodecamp.org/news/command-line-for-beginners/)).
+5. Type `cd [YOUR_FOLDER_LOCATION]` where `[YOUR_FOLDER_LOCATION]` is the path to the folder containing the jar file. (Learn more [here](https://www.wikihow.com/Change-Directories-in-Command-Prompt)).
+6. Type `java -jar <filename>.jar` and press Enter. A GUI should appear in a few seconds.
 
-    2. Download the latest `addressbook.jar` from [here](https://github.com/AY2425S2-CS2103T-F14-1/tp/releases).
+#### Shutdown
 
-    3. Copy the file to the folder you want to use as the _home folder_ for your addressbook. 
+- Type `exit` in the command box to close the application.
+- **OR** click the `File` button and select `Exit` from the dropdown menu.
 
-    4. Open a command terminal or learn how to do so [here](https://www.freecodecamp.org/news/command-line-for-beginners/)
+#### Saving Window Preferences
 
-    5. Type `cd/[YOUR_FOLDER_LOCATION]`. The `FOLDER_LOCATION` should be the folder where yout put the jar file in. Find out more [here](https://www.wikihow.com/Change-Directories-in-Command-Prompt)
+1. Resize the window to an optimum size and move it to a different location.
+2. Close the window.
+3. Re-launch the app by double-clicking the jar file.
+    - **Expected:** The most recent window size and location should be retained.
 
-    6. Type `java -jar addressbookv1.5.jar` and press Enter to launch Java and run the application. A GUI should appear in a few seconds.
+---
 
-**Shutdown**
+### Testing the Core Commands
 
-    - Type `exit` in the command box to close the application.
+#### 1. Help Command
 
-    - OR click the `File` button and select `Exit` from the dropdown menu.
+- **Test Case:** Type `help` in the command box.
+- **Expected Result:** A help message is displayed explaining how to access the help page along with the list of available commands and their formats.
+- **Notes:** Check that the help content includes examples and tips for each command.
 
-**Saving window preferences**
+---
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+#### 2. Adding a Person
 
-    2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+- **Valid Input:**
+    - **Test Case:**
+      ```
+      add n/Mai p/12341234 e/student@example.com s/A1234567X
+      ```  
+      **Expected:** A new person is added to conTAct.
+    - **Test Case (with optional fields):**
+      ```
+      add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care tut/CS2103 tut/CS2109S a/Kent Ridge Hall
+      ```  
+      **Expected:** The new person is added with tags, tutorials, and an address.
+- **Invalid Input:**
+    - **Test Case:** Try omitting any required field (for example, leave out the student ID).
+    - **Expected:** An error message is displayed in the status bar indicating the missing required field.
+- **Edge Cases:**
+    - Test with extra spaces or unusual but valid characters in optional fields.
+    - Verify that input constraints (e.g., student ID format, alphanumeric tags/tutorial names) are enforced.
 
-### Deleting a person
+---
 
-1. Deleting a person while all persons are being shown
+#### 3. Listing All Persons
 
-    a. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+- **Default Listing:**
+    - **Test Case:** Type `list`
+    - **Expected:** A list of all persons is displayed with all fields.
+- **Customized Listing:**
+    - **Test Case:**
+      ```
+      list n/ p/
+      ```  
+      **Expected:** Only the names and phone numbers of all persons are displayed.
+    - **Test Case:**
+      ```
+      list n/ e/ t/
+      ```  
+      **Expected:** Only the names, emails, and tags are displayed.
+- **Notes:** Confirm that the list reflects any changes made by previous commands (such as add, edit, or delete).
 
-    b. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+---
 
-    c. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+#### 4. Editing a Person
 
-    d. Test case: `delete n/[NAME]` <br>
-       Expected: The person with the name [NAME] should be deleted. Similar to other fields.
+- **Valid Edits:**
+    - **Preparation:** Use `list` to note the index of the person you want to edit.
+    - **Test Case:**
+      ```
+      edit 1 p/91234567 e/johndoe@example.com
+      ```  
+      **Expected:** The 1st person’s phone number and email are updated accordingly.
+    - **Test Case (Clearing Tags):**
+      ```
+      edit 2 n/Betsy Crower t/
+      ```  
+      **Expected:** The 2nd person’s name is changed to “Betsy Crower” and all tags are cleared.
+- **Invalid Edits:**
+    - **Test Case:** Use an index that does not exist (e.g., `edit 99 n/Name`)
+    - **Expected:** An error message indicating an invalid index is displayed.
+    - **Test Case:** Enter `edit` with no optional fields.
+    - **Expected:** An error message prompting that at least one field is required for editing.
+- **Notes:** Verify that changes are reflected immediately in the list command output.
 
-    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+---
 
-### Saving data
+#### 5. Finding Persons by Attributes
 
-1. Dealing with missing/corrupted data files
+- **Search by Name (Full Word Matching):**
+    - **Test Case:**
+      ```
+      find n/John
+      ```  
+      **Expected:** Only persons whose names match exactly “John” (as a full word) are shown.
+- **Search by Phone Number or Email (Partial Matching):**
+    - **Test Case:**
+      ```
+      find p/123
+      ```  
+      **Expected:** Persons with phone numbers containing “123” are displayed.
+    - **Test Case:**
+      ```
+      find e/example
+      ```  
+      **Expected:** Persons with email addresses that include “example” are shown.
+- **Search by Tag or Tutorial (Full Word Matching):**
+    - **Test Case:**
+      ```
+      find t/friend
+      ```  
+      **Expected:** Only persons tagged exactly as “friend” are listed.
+    - **Test Case:**
+      ```
+      find tut/CS2103T
+      ```  
+      **Expected:** Only persons in tutorial “CS2103T” are shown.
+- **Notes:** Verify that the search is case-insensitive and that the ordering of keywords in names does not affect the results.
 
-    a. To simulate a missing file:
-       - Manually rename or remove the data file (e.g., addressbook.json).
-       - Launch the application.
-       - Expected Behavior: The app should detect the absence of the file, recreate it with default data, and log a warning message.
+---
 
-    b. To simulate a corrupted file:
-       - Open the data file (e.g., addressbook.json) in a text editor.
-       - Modify its content so that it is not valid JSON (e.g., delete or alter key structural elements).
-       - Launch the application.
-       - Expected Behavior: The app should notify the user about the corrupted file, attempt to restore data from a backup if available, or reset to a default state while logging the error.
+#### 6. Deleting a Person or a Group of Persons
 
+- **Deleting by Name:**
+    - **Test Case:**
+      ```
+      delete n/John
+      ```  
+      **Expected:** All persons whose full name matches “John” are deleted.
+- **Deleting by Tag:**
+    - **Test Case:**
+      ```
+      delete t/friend
+      ```  
+      **Expected:** All persons tagged as “friend” are deleted.
+- **Deleting by Student ID:**
+    - **Test Case:**
+      ```
+      delete s/A1234567X
+      ```  
+      **Expected:** Only the person with the exact student ID is deleted.
+- **Invalid Delete Commands:**
+    - **Test Case:**
+      ```
+      delete
+      ```  
+      **Expected:** An error is shown because the command lacks a field/value.
+    - **Test Case:**
+      ```
+      delete x/
+      ```  
+      **Expected:** An error is shown due to an invalid prefix.
+- **Notes:** After deletion, run the `list` command to verify the updated list of persons.
 
+---
+
+#### 7. Clearing All Entries
+
+- **Test Case:** Type `clear`
+- **Expected:** All entries are removed from conTAct. Verify by using the `list` command; the list should now be empty.
+- **Notes:** Confirm that a confirmation or warning is displayed (if applicable) before clearing all entries.
+
+---
+
+#### 8. Exiting the Program
+
+- **Test Case (Command):** Type `exit`
+    - **Expected:** The application terminates gracefully.
+- **Test Case (Menu Option):** Click the `File` button and select `Exit`
+    - **Expected:** The application terminates gracefully.
+
+---
 
 ### Saving, Loading, and Managing Files
 
-1. **Saving the current address book data**
+#### Saving Data
 
-    a. Test case: `save [FILENAME]`  <br>
-        Expected: The current address book data is saved to a file named `[FILENAME].json` in the default directory. A success message is displayed in the status bar.
+1. **Test Case:**
+    ```
+    save addressbook
+    ```  
+   **Expected:** The current address book data is saved to a file named `addressbook.json` in the default directory, and a success message is displayed in the status bar.
+2. **Test Case:**
+    ```
+    save
+    ```  
+   **Expected:** An error message indicating that a filename is required.
+3. **Test Case:**
+    ```
+    save invalid/filename
+    ```  
+   **Expected:** An error message indicating that the filename contains invalid characters.
 
-    b. Test case: `save`  <br>
-        Expected: Error message displayed indicating that a filename is required.
+#### Loading Data
 
-    c. Test case: `save invalid/filename`  <br>
-        Expected: Error message displayed indicating that the filename contains invalid characters.
+1. **Preparation:** Ensure a valid JSON file (e.g., `example.json`) exists in the default directory.
+2. **Test Case:**
+    ```
+    load example
+    ```  
+   **Expected:** The address book data is replaced with the contents of `example.json`, with a success message in the status bar.
+3. **Test Case:**
+    ```
+    load nonExistentFile
+    ```  
+   **Expected:** An error message indicating that the specified file does not exist.
+4. **Test Case:**
+    ```
+    load corruptedFile
+    ```  
+   **Expected:** An error message indicating that the file is corrupted or invalid.
 
-2. **Loading data from a file**
+#### Listing All Saved Files
 
-    a. Prerequisites: Ensure a valid JSON file (e.g., `example.json`) exists in the default directory.
+1. **Test Case:**
+    ```
+    files
+    ```  
+   **Expected:** A list of all saved files in the default directory is displayed in the result panel.
+2. **Test Case:**
+    ```
+    files
+    ```  
+   when no files exist  
+   **Expected:** A message is displayed indicating that no saved files are available.
 
-    b. Test case: `load example`  <br>
-        Expected: The address book data is replaced with the contents of `example.json`. A success message is displayed in the status bar.
+#### Dealing with Missing/Corrupted Data Files
 
-    c. Test case: `load nonExistentFile`  <br>
-        Expected: Error message displayed indicating that the specified file does not exist.
+1. **Simulating a Missing File:**
+    - Manually rename or remove the data file (e.g., `addressbook.json`).
+    - Launch the application.
+    - **Expected Behavior:** The app detects the absence of the file, recreates it with default data, and logs a warning message.
+2. **Simulating a Corrupted File:**
+    - Open the data file (e.g., `addressbook.json`) in a text editor.
+    - Modify its content so that it is not valid JSON (for example, delete or alter key structural elements).
+    - Launch the application.
+    - **Expected Behavior:** The app notifies the user about the corrupted file, attempts to restore data from a backup if available, or resets to a default state while logging the error.
 
-    d. Test case: `load corruptedFile`  <br>
-        Expected: Error message displayed indicating that the file is corrupted or invalid.
+---
 
-3. **Listing all saved files**
+### Additional Exploratory Testing
 
-    a. Test case: `files`  <br>
-        Expected: A list of all saved files in the default directory is displayed in the result panel.
+- **Invalid Command Formats:**  
+  Try commands with typos or extra spaces (e.g., `add  n/Mai  p/12341234`) and verify that the app returns a clear error message.
+- **Field Boundary Testing:**  
+  Test the input constraints for each field. For example, provide an incorrectly formatted student ID, non-alphanumeric characters in tag names, or an invalid phone number format.
+- **User Interface:**  
+  Verify that all GUI components (such as the status bar, menus, and command box) behave as expected during and after executing commands.
+- **Error Logging:**  
+  Check that the status bar and any log files (if applicable) accurately report errors and warnings.
 
-    b. Test case: `files` when no files exist  <br>
-        Expected: A message indicating that no saved files are available is displayed.
-
-       
-
-
+  
 ---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -460,4 +614,5 @@ in the format of a course code (e.g CS2103T). We plan to improve it by making it
 3. **List all students after delete command**: If a user use the find command to filter out a student, and then use delete
 command to delete the student, the app will display a blank list. We plan to update it to display the whole list after
 the delete command is called.<br>
+
 

@@ -85,16 +85,17 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a student to the address book.
+Adds a student to conTAct.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [t/TAG] [tut/TUTORIALS] [a/ADDRESS]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [te/telegram] [t/TAG]… [tut/TUTORIALS]… [a/ADDRESS]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0) and any number of tutorials (including 0).
-The address field is optional. 
-Input constraints:
-- Tutorial name and tag name should be alphanumeric values.
-- Student ID should starts with an A, followed by 7 numbers and an A-Z letter. 
+The address and telegram field is optional.<br> 
+Input constraints:<br>
+- Tutorial name and tag name should be alphanumeric values.<br>
+- Student ID should starts with an A, followed by 7 numbers and an A-Z letter.<br>
+- Telegram should be alphanumeric values or underscores.
 </div>
 
 Examples:
@@ -105,7 +106,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book. You can customize the fields displayed in the person cards using prefixes.
+Shows a list of all persons in conTAct. You can customize the fields displayed in the person cards using prefixes.
 
 Format: `list [PREFIX]...`
 
@@ -116,6 +117,7 @@ Format: `list [PREFIX]...`
   * `e/` - Show email
   * `a/` - Show address
   * `s/` - Show student ID
+  * `te/` - Show telegram
   * `t/` - Show tags
   * `tut/` - Show tutorials
 * You can combine multiple prefixes to display specific fields.
@@ -129,7 +131,7 @@ Examples:
 
 ### Editing a person : `edit`
 
-Edits an existing student in the address book.
+Edits an existing student in conTAct.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -184,7 +186,7 @@ Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 ### Deleting a person or a group of people: `delete`
 
-Deletes students from the address book based on the specified field and value.
+Deletes students from the list based on the specified field and value.
 
 Format: `delete PREFIX KEYWORD`
 
@@ -218,7 +220,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from conTAct.
 
 Format: `clear`
 
@@ -268,6 +270,27 @@ Format: `files`
 
 Examples:
 * `files` - Displays all saved files in the data directory.
+=======
+### Saving a current version of data : `save`
+
+Archives a copy of the current version of the list.
+
+Format: `save FILE_PATH`
+
+Example:
+* `save addressbook` - Saves the current version of the list as data/addressbook.json.
+
+### Loading a copy of address book : `load`
+
+Loads a .json copy of students list into conTAct.
+
+Format: `load FILE_PATH`
+
+Example: 
+* `load addressbook` - Loads addressbook.json into conTAct.
+
+### Saving the data
+
 
 
 ### Editing the data file
@@ -311,4 +334,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG] [tut/TUTORIAL] [a/ADDRESS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/John`, `find t/friend`, `find tut/CS2103T`
 **List** | `list [PREFIX]...`<br> e.g., `list`, `list n/ p/`, `list n/ e/ t/`
+**Save** | `save FILE_PATH`<br> e.g., `save addressbook`
+**Load** | `load FILE_PATH`<br> e.g., `load addressbook`
 **Help** | `help`
