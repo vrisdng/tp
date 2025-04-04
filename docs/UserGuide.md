@@ -268,30 +268,6 @@ Format: `files`
 * The command will list all files with their names and extensions.
 * Files are displayed in alphabetical order.
 
-Examples:
-* `files` - Displays all saved files in the data directory.
-=======
-### Saving a current version of data : `save`
-
-Archives a copy of the current version of the list.
-
-Format: `save FILE_PATH`
-
-Example:
-* `save addressbook` - Saves the current version of the list as data/addressbook.json.
-
-### Loading a copy of address book : `load`
-
-Loads a .json copy of students list into conTAct.
-
-Format: `load FILE_PATH`
-
-Example: 
-* `load addressbook` - Loads addressbook.json into conTAct.
-
-### Saving the data
-
-
 
 ### Editing the data file
 
