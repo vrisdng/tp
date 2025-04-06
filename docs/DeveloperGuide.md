@@ -270,15 +270,15 @@ conTAct helps TAs efficiently organize and manage student information, reducing 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                     | So that I can…​                    |
-|---------|-------------| ------------------------------ | ---------------------------------- |
+| Priority | As a …​     | I want to …​                     | So that I can…​                                |
+|---------|-------------| ------------------------------ |------------------------------------------------|
 | `* * *` | new TA      | import a list of students and professors    | don’t have to manually enter all the contacts. |
-| `* * `  | new TA      | send a message to multiple students at once |   make announcements efficien      |
-| `* * *` | TA          | delete the contact details of a student                | update my list of students         |
-| `* * *` | TA          | add the contact details of a student          | keep track of my students |
-| `* * *` | TA          | list the contact details of all my students   | display and view my list of students |
-| `* * *` | TA          | find a student’s contact information quickly           | contact them conveniently          |
-| `* * ` | TA          | filter contacts | find relevant contacts easily|
+| `* * `  | new TA      | send a message to multiple students at once | make announcements efficient                   |
+| `* * *` | TA          | delete the contact details of a student                | update my list of students                     |
+| `* * *` | TA          | add the contact details of a student          | keep track of my students                      |
+| `* * *` | TA          | list the contact details of all my students   | display and view my list of students           |
+| `* * *` | TA          | find a student’s contact information quickly           | contact them conveniently                      |
+| `* * ` | TA          | filter contacts | find relevant contacts easily                  |
 
 
 ### Excluded from Initial Release
