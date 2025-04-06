@@ -537,20 +537,24 @@ Given below are instructions to test the app manually.
 
 #### Loading Data
 
-1. **Preparation:** Ensure a valid JSON file (e.g., `example.json`) exists in the default directory.
+1. **Preparation:** Ensure a valid JSON file (e.g., `example.json`) exists in the default directory (a folder named `data` in the current directory storing the program's jar file). You can run `save example` before this to ensure this.
+
 2. **Test Case:**
     ```
     load example
     ```  
    **Expected:** The address book data is replaced with the contents of `example.json`, with a success message in the status bar.
+
 3. **Test Case:**
     ```
     load nonExistentFile
     ```  
    **Expected:** An error message indicating that the specified file does not exist.
 4. **Test Case:**
+  Go to the saved `example.json` file saved in the default directory. Then change the value of the files (E.g. duplicate an entry or delete an entry's student ID) to make the file invalid.
+  Then run:
     ```
-    load corruptedFile
+    load example
     ```  
    **Expected:** An error message indicating that the file is corrupted or invalid.
 
