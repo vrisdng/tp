@@ -519,19 +519,21 @@ Given below are instructions to test the app manually.
 
 1. **Test Case:**
     ```
-    save addressbook
+    save test
     ```  
-   **Expected:** The current address book data is saved to a file named `addressbook.json` in the default directory, and a success message is displayed in the status bar.
+   **Expected:** The current address book data is saved to a file named `test.json` in the default directory (a folder named `data` in the current directory storing the program's jar file), and a success message is displayed in the status bar.
+
 2. **Test Case:**
     ```
     save
     ```  
    **Expected:** An error message indicating that a filename is required.
+
 3. **Test Case:**
     ```
-    save invalid/filename
+    save [invalid/filename]
     ```  
-   **Expected:** An error message indicating that the filename contains invalid characters.
+   **Expected:** The command will not be run
 
 #### Loading Data
 
