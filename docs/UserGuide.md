@@ -95,6 +95,13 @@ The address and telegram field is optional.<br>
 Input constraints:<br>
 - Tutorial names and tag names should be alphanumeric values.<br>
 - Student ID should starts with an A, followed by 7 numbers and an A-Z letter.<br>
+- Emails should be of the format <local-part>@<domain> and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+    The domain name must:
+        - end with a domain label at least 2 characters long
+        - have each domain label start and end with alphanumeric characters
+        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - Telegram should be alphanumeric values or underscores.
 </div>
 
