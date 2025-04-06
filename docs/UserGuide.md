@@ -30,7 +30,7 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
    **Linux Users:** Open your Terminal from the Applications menu.
 
 6. Type `java -jar <name_of_file>.jar` in the terminal, and then Enter to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
