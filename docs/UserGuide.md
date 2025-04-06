@@ -93,16 +93,16 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [te/telegram] [t/TAG]…
 A student can have any number of tags (including 0) and any number of tutorials (including 0).
 The address and telegram field is optional.<br> 
 Input constraints:<br>
-- Tutorial name and tag name should be alphanumeric values.<br>
+- Tutorial names and tag names should be alphanumeric values.<br>
 - Student ID should starts with an A, followed by 7 numbers and an A-Z letter.<br>
 - Telegram should be alphanumeric values or underscores.
 </div>
 
 Examples:
 * `add n/Mai p/12341234 e/student@example.com s/A1234567X`
-* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care`
-* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care tut/CS2103 tut/CS2109S`
-* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care tut/CS2103 tut/CS2109S a/Kent Ridge Hall`
+* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/leader`
+* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/yapper tut/CS2103 tut/CS2109S`
+* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/inDanger te/mai tut/CS2103 tut/CS2109S a/Kent Ridge Hall`
 
 ### Listing all persons : `list`
 
