@@ -56,7 +56,12 @@ public class LoadCommand extends Command {
                 new CommandException("Failed to load address book from file."));
             model.setAddressBook(new AddressBook(loadedAddressBook));
         } catch (Exception e) {
-            throw new CommandException("Error reading file: " + e.getMessage());
+            String errorMessagePrecursor = "seedu.address.commons.exceptions.IllegalValueException: ";
+            String errorMessage = e.getMessage();
+            if (e.getMessage().contains(errorMessagePrecursor)) {
+                errorMessage = e.getMessage().replace(errorMessagePrecursor, "");
+            }
+            throw new CommandException("Error reading file: " + errorMessage);
         }
 
         // Reset display preferences to default state
