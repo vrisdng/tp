@@ -38,7 +38,7 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to conTActs.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to conTAct.
 
    * `delete n/John Doe` : Deletes John Doe from the conTAct list.
 

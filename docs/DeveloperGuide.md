@@ -264,7 +264,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 - Students accessing their records (future feature consideration).
 
 **Value Proposition**:
-conTActs helps TAs efficiently organize and manage student information, reducing administrative workload and improving accessibility. The app provides a centralized platform for tracking student details, communication, and academic progress.
+conTAct helps TAs efficiently organize and manage student information, reducing administrative workload and improving accessibility. The app provides a centralized platform for tracking student details, communication, and academic progress.
 
 ### User Stories
 
