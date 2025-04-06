@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,7 +32,12 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        if (addressBook.getPersonList().isEmpty()) {
+            logger.info("No data file found or data file is empty. Populating sample data.");
+            this.addressBook = new AddressBook(SampleDataUtil.getSampleAddressBook());
+        } else {
+            this.addressBook = new AddressBook(addressBook);
+        }
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }

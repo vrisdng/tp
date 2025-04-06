@@ -103,7 +103,7 @@ Input constraints:<br>
         - have each domain label start and end with alphanumeric characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - Telegram should be alphanumeric values or underscores.<br>
-- Tutorial names and tag names should be alphanumeric values.<br>
+- Tutorial names and tag names should be alphanumeric values, tutorials can have hyphens.<br>
 </div>
 
 Examples:

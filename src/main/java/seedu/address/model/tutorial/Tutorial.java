@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tutorial {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorials names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial names should be alphanumeric and may include hyphens";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}-]+";
 
     public final String tutorialName;
 
