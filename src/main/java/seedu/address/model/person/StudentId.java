@@ -6,7 +6,7 @@ package seedu.address.model.person;
  */
 public class StudentId {
     public static final String MESSAGE_CONSTRAINTS =
-            "Student IDs should start with 'A' followed by 7 digits and a letter.";
+            "Student IDs should start with 'A' followed by 7 digits and a capital letter (A-Z).";
     public final String value;
 
     /**
