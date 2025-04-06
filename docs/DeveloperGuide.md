@@ -285,24 +285,209 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - Student self-service portal.
 - Mobile application version.
 
-### Use Cases
-### Adding a Tag to a Student
-1. TA logs into the system.
-2. TA searches for the student using the search bar.
-3. TA selects the student from the results.
-4. TA clicks on "Edit Profile".
-5. TA adds a tag (e.g., "Needs Assistance") to the profile.
-6. TA saves the changes.
-7. System updates the student profile with the new tag.
+### Use cases
 
-### Assigning a Student to a Course
-1. TA logs into the system.
-2. TA searches for the student.
-3. TA selects the student’s profile.
-4. TA clicks on "Assign Course".
-5. TA selects the appropriate course from a dropdown list.
-6. TA confirms the selection.
-7. System updates the student’s profile with the assigned course.
+(For all use cases below, the **System** is `conTAct` and the **Actor** is the `User`, unless specified otherwise)
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC01 - Deleting student contacts`
+
+**Guarantees**: `If MSS reaches step 4, the requested student contact(s) will be deleted`
+
+**MSS**:
+1. User requests to list student contacts.
+2. conTAct displays a list of contacts.
+3. User requests to delete specific contacts in the list.
+4. conTAct deletes the contacts and confirms that the contacts have been deleted.
+
+   Use case ends.
+
+**Extensions**:
+
+* 1a. conTAct detects an invalid list command.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command.
+    * Use case resumes from step 2.
+
+* 3a. conTAct is unable to find some of the specified contact(s).
+    * 3a1. conTAct alerts the user.
+    * 3a2. User retypes the command.
+    * Use case resumes from step 4.
+
+* 3b. conTAct uncovers a prefix with an empty value.
+    * 3b1. conTAct alerts the user.
+    * 3b2. User retypes the command with a non-empty value.
+    * Use case resumes from step 4.
+
+* 3c. conTAct uncovers invalid contact identifiers.
+    * 3c1. conTAct alerts the user.
+    * 3c2. User retypes the command with valid identifiers.
+    * Use case resumes from step 4.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC02 - Finding a student by name`
+
+**Guarantees**: `If MSS reaches step 2, conTAct will return a list of students whose names match the keyword`
+
+**MSS**:
+1. User enters the keyword for the student name.
+2. conTAct shows the matching results.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. conTAct detects an empty input.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command.
+    * Use case resumes from step 2.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC03 - Editing a student contact`
+
+**Guarantees**: `If MSS reaches step 2, the student will have the specified fields updated`
+
+**MSS**:
+1. User requests to edit a student by index.
+2. conTAct updates the specified fields and confirms the update.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Index not found.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command.
+    * Use case resumes from step 2.
+
+* 1b. Empty field value.
+    * 1b1. conTAct alerts the user.
+    * 1b2. User retypes the command.
+    * Use case resumes from step 2.
+
+* 1c. Invalid format.
+    * 1c1. conTAct alerts the user.
+    * 1c2. User retypes the command.
+    * Use case resumes from step 2.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC04 - Adding a student`
+
+**Guarantees**: `A new student will be added to the contact list`
+
+**MSS**:
+1. User enters the add command with student details.
+2. conTAct adds the student and confirms successful addition.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Missing required prefix.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command.
+    * Use case resumes from step 2.
+
+* 1b. Invalid student ID or telegram format.
+    * 1b1. conTAct alerts the user.
+    * 1b2. User retypes the command.
+    * Use case resumes from step 2.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC05 - Listing student contacts`
+
+**Guarantees**: `If MSS reaches step 3, the contact list is displayed with relevant fields`
+
+**MSS**:
+1. User requests to list all students.
+2. conTAct displays the list of students.
+3. conTAct confirms successful listing.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. User provides invalid prefix formatting.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command.
+    * Use case resumes from step 2.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC06 - Saving contact data`
+
+**Guarantees**: `If MSS reaches step 2, data is saved to the specified file`
+
+**MSS**:
+1. User requests to save data.
+2. conTAct saves the data and confirms the save.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Invalid filename.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command.
+    * Use case resumes from step 2.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC07 - Loading contact data`
+
+**Guarantees**: `If MSS reaches step 2, data is loaded successfully from file`
+
+**MSS**:
+1. User requests to load data from a file.
+2. conTAct loads the data and displays confirmation.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. File not found or invalid format.
+    * 1a1. conTAct alerts the user.
+    * 1a2. User retypes the command or uses a valid file.
+    * Use case resumes from step 2.
+
+**System**: `conTAct`
+
+**Actor**: `User`
+
+**Use Case**: `UC08 - Accessing help information`
+
+**Guarantees**: `If MSS reaches step 2, help information is displayed`
+
+**MSS**:
+1. User requests help.
+2. conTAct displays help information.
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Help for a specific command.
+    * 1a1. conTAct displays command-specific help.
+    * Use case ends.
+
+* 1b. Invalid help command.
+    * 1b1. conTAct alerts the user.
+    * 1b2. User retypes a valid help command.
+    * Use case resumes from step 1a1.
+
+---
 
 ### Non-Functional Requirements
 - **Performance:** The system should handle up to 10,000 student records efficiently.
