@@ -236,7 +236,9 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Saving the data manually : `save`
 
-Saves the current address book data to a specified file.
+* Saves the current address book data to a specified file. 
+* The data will be saved in json files, which are stored in the folder `data` in the directory that contains the program's jar file.
+* Please take note that if the user saves to a file that has already existed (E.g. the user previously saved to test.json and now run `save test`), the previously saved version will be replaced with the new versin. Because of this, we advise users to use the `file` command to see all the saved files before saving to prevent duplicates.
 
 Format: `save [FILE_NAME]`
 
@@ -253,6 +255,7 @@ Format: `load [FILE_NAME]`
 
 * The file must be a valid JSON file containing address book data.
 * If the file is not found or the format is invalid, an error message will be displayed, and the current data will remain unchanged.
+* Please take note that once a saved file is loaded, the current addressbook if not saved will be erased. Make sure to save the current addressbook before loading if this is undesirable.
 
 Examples:
 * `load backup` - Loads data from `backup.json`.
