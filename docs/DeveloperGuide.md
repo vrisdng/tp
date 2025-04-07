@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**:
 * 1a. Invalid filename.
-    * 1a1. conTAct alerts the user.
+    * 1a1. conTAct does not run the command.
     * 1a2. User retypes the command.
     * Use case resumes from step 2.
 
@@ -493,6 +493,8 @@ Given below are instructions to test the app manually.
       ```  
       **Expected:** A new person is added to conTAct.
     - **Test Case (with optional fields):**
+
+      Copy both lines as a single command
     
       ```
       add n/Mai p/12341234 e/student@example.com s/A1234567X 
