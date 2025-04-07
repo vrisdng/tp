@@ -110,9 +110,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [te/telegram] [t/TAG]...
 - Emails should be of the format <local-part>@<domain> and adhere to the following constraints:<br>
     1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br>
     2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>
-    The domain name must:
-        2a. end with a domain label at least 2 characters long.
-        2b. have each domain label start and end with alphanumeric characters
+    The domain name must:<br>
+        2a. end with a domain label at least 2 characters long.<br>
+        2b. have each domain label start and end with alphanumeric characters.<br>
         2c. have each domain label consist of alphanumeric characters, separated only by hyphens, if any.<br>
 - Telegram should be alphanumeric values or underscores.<br>
 - Tutorial names and tag names should be alphanumeric values, tutorials can have hyphens.<br>
