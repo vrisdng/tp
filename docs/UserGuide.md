@@ -160,7 +160,7 @@ Examples:
 
 Finds persons whose fields match any of the given keywords.  
 Only one field is allowed in each `find`.
-d
+
 Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g., `hans` will match `Hans`.
