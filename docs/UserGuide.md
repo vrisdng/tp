@@ -27,7 +27,7 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
    **Mac Users:** Open *Terminal* from the Launchpad or Spotlight (`Cmd + Space`, then type "Terminal").<br>
    **Linux Users:** Open your Terminal from the Applications menu.
 
-6. `cd <folder_name>` into the folder you put the jar file in. (e.g `cd folder`)
+6. Navigate into the folder you put the jar file in using `cd <folder_name>`. (e.g `cd folder`)
 
 7. Type `java -jar <name_of_file>.jar` (e.g java -jar conTAct.jar) in the terminal, and then Enter to run the application.<br>
    A GUI similar to the below should appear in a few seconds. <br>
