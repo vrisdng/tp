@@ -6,7 +6,7 @@ title: User Guide
 conTAct **is a desktop app designed to help Teaching Assistants efficiently manage student lists and information.** It’s optimized for fast use via the **Command Line Interface (CLI)**, while still offering the ease of a Graphical User Interface (GUI). If you're comfortable typing commands, conTAct makes tracking students, managing tutorials, and updating records quicker than traditional GUI-based apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
