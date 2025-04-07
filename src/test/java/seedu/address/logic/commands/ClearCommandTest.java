@@ -14,8 +14,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_emptyAddressBook_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        // Create a ModelManager with an empty AddressBook without sample data
+        Model model = new ModelManager(new AddressBook(), new UserPrefs(), false);
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), false);
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -21,12 +21,12 @@ import seedu.address.model.person.Telegram;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "12";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_STUDENT_ID = "A123";
-    private static final String INVALID_TUTORIAL = " ";
+    private static final String INVALID_TUTORIAL = "CS@23";
     private static final String INVALID_TELEGRAM = "JKL9@#fg";
 
     private static final String VALID_NAME = BENSON.getName().toString();

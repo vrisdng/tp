@@ -38,9 +38,9 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to conTAct.
+   * `add n/John Doe p/98765432 e/johnd@example.com s/A1234567X` : Adds a student named `John Doe` to conTAct.
 
-   * `delete n/John Doe` : Deletes John Doe from the conTAct list.
+   * `delete n/John Doe` : Deletes John Doe from the contact list.
 
    * `clear` : Deletes all contacts.
 
@@ -95,16 +95,24 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [te/telegram] [t/TAG]…
 A student can have any number of tags (including 0) and any number of tutorials (including 0).
 The address and telegram field is optional.<br> 
 Input constraints:<br>
-- Tutorial name and tag name should be alphanumeric values.<br>
-- Student ID should starts with an A, followed by 7 numbers and an A-Z letter.<br>
-- Telegram should be alphanumeric values or underscores.
+- Student ID should starts with an A, followed by 7 numbers and a capital letter (A-Z).<br>
+- Phone numbers only contain numbers, should be at least 3 digits long, and may include '+', '(', and ')' for country code. E.g: (+65)12341234.<br>
+- Emails should be of the format <local-part>@<domain> and adhere to the following constraints:<br>
+    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+    The domain name must:
+        - end with a domain label at least 2 characters long
+        - have each domain label start and end with alphanumeric characters
+        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+- Telegram should be alphanumeric values or underscores.<br>
+- Tutorial names and tag names should be alphanumeric values, tutorials can have hyphens.<br>
 </div>
 
 Examples:
 * `add n/Mai p/12341234 e/student@example.com s/A1234567X`
-* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care`
-* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care tut/CS2103 tut/CS2109S`
-* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care tut/CS2103 tut/CS2109S a/Kent Ridge Hall`
+* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/leader`
+* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/yapper tut/CS2103 tut/CS2109S`
+* `add n/Mai p/12341234 e/student@example.com s/A1234567X t/inDanger te/mai tut/CS2103 tut/CS2109S a/Kent Ridge Hall`
 
 ### Listing all students : `list`
 

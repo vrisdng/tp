@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -26,7 +27,9 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        // Expected address book contains sample data
+        AddressBook expectedAddressBook = new AddressBook(SampleDataUtil.getSampleAddressBook());
+        assertEquals(expectedAddressBook, new AddressBook(modelManager.getAddressBook()));
     }
 
     @Test
