@@ -490,17 +490,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 ### Non-Functional Requirements
-- **Performance:** The system should handle up to 10,000 student records efficiently.
-- **Usability:** The interface should be simple and intuitive, requiring minimal training.
-- **Scalability:** The system should support multiple TAs accessing student records concurrently.
-- **Security:** Student data must be encrypted and accessible only to authorized users.
-- **Availability:** The system should have 99.9% uptime to ensure reliability.
+- **Performance:** The system should handle up to 100 student records efficiently without significant delays in operations such as searching, adding, or deleting.
+- **Usability:** The interface should be simple and intuitive, requiring minimal training for Teaching Assistants (TAs) to use effectively.
+- **Error Handling:** The system should provide clear and actionable error messages for invalid commands, missing fields, or corrupted data files.
+- **Compatibility:** The application should run on any mainstream OS (i.e. Windows, Linux, Unix, MacOS) with Java `17` or above installed.
+- **Data Persistence:** All data should be saved in JSON format and persist across application restarts.
+- **Security:** The system should restrict access to sensitive data by ensuring that only valid commands can modify or delete records.
+- **Scalability:** The system should allow for future enhancements, such as adding new fields or features, without requiring significant changes to the existing architecture.
+- **Maintainability:** The codebase should follow clean coding practices and include sufficient documentation to allow future developers to understand and extend the system.
+- **Extensibility:** The system should allow for the addition of new commands or features (e.g., undo/redo, ticking attendances) with minimal disruption to existing functionality.
+- **Responsiveness:** The system should provide immediate feedback for user actions, such as displaying success or error messages after executing commands.
+
 
 ### Glossary
-- **TA (Teaching Assistant):** An academic assistant helping professors with student management.
-- **Student Profile:** A record containing a student's personal, academic, and contact information.
-- **Tag:** A keyword or label assigned to a student for categorization.
-- **Course Assignment:** The process of linking a student to a specific course in the system.
+### Glossary
+
+| Term                     | Definition                                                                                   |
+|--------------------------|-----------------------------------------------------------------------------------------------|
+| **AddressBook**          | The main data structure that stores all `Person` objects in the application.                 |
+| **Command**              | A user instruction to the application, such as `add`, `delete`, `find`, or `list`.          |
+| **CommandResult**        | The result of executing a command, which includes feedback messages to the user.             |
+| **GUI**                  | Graphical User Interface, the visual interface of the application that users interact with.  |
+| **JSON**                 | JavaScript Object Notation, a lightweight data-interchange format used for saving and loading data. |
+| **MainApp**              | The entry point of the application, responsible for initializing and launching the app.      |
+| **Model**                | The component responsible for managing the application's data and business logic.            |
+| **ObservableList**       | A list that allows listeners to track changes to its elements, used for updating the UI dynamically. |
+| **Parser**               | A component that interprets user input and converts it into executable commands.             |
+| **Person**               | A data model representing a student, including fields like name, phone, email, and tags.     |
+| **Prefix**               | A short identifier used in commands to specify fields (e.g., `n/` for name, `p/` for phone). |
+| **Student ID**           | A unique identifier for students, following the NUS Student ID format: starts with `A`, followed by 7 digits, and ends with an uppercase letter (e.g., `A1234567X`). |
+| **Tag**                  | A label associated with a `Person` to categorize or group them (e.g., `friend`, `classmate`).|
+| **Telegram**             | A field in the `Person` model representing the student's Telegram handle.                    |
+| **Tutorial**             | A field in the `Person` model representing the student's enrolled tutorial groups.           |
+| **Undo/Redo**            | A proposed feature to revert or reapply the last executed commands.                          |
+| **UserPref**             | A data model representing user preferences, such as window size and file paths.              |
+| **Validation**           | The process of ensuring that user input meets the required format or constraints.            |
+| **VersionedAddressBook** | A proposed extension of the `AddressBook` that supports undo/redo functionality.             |
+| **View**                 | The visual representation of data in the UI, such as the list of students displayed.         |
 
 --------------------------------------------------------------------------------------------------------------------
 
