@@ -42,8 +42,26 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * If useSampleData is true and the addressBook is empty, sample data will be loaded.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, boolean useSampleData) {
+        requireAllNonNull(addressBook, userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        if (useSampleData && addressBook.getPersonList().isEmpty()) {
+            logger.info("No data found. Populating sample data.");
+            this.addressBook = new AddressBook(SampleDataUtil.getSampleAddressBook());
+        } else {
+            this.addressBook = new AddressBook(addressBook);
+        }
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    // Default constructor uses sample data.
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), true);
     }
 
     //=========== UserPrefs ==================================================================================
