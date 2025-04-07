@@ -582,6 +582,7 @@ Given below are instructions to test the app manually.
       ```  
       **Expected:** A new person is added to conTAct.
     - **Test Case (with optional fields):**
+    
       ```
       add n/Mai p/12341234 e/student@example.com s/A1234567X t/needsCare tut/CS2103 tut/CS2109S a/Kent Ridge Hall
       ```  
