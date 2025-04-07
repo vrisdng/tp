@@ -461,7 +461,8 @@ Given below are instructions to test the app manually.
 3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 4. Open a command terminal (learn how to do so [here](https://www.freecodecamp.org/news/command-line-for-beginners/)).
 5. Type `cd [YOUR_FOLDER_LOCATION]` where `[YOUR_FOLDER_LOCATION]` is the path to the folder containing the jar file. (Learn more [here](https://www.wikihow.com/Change-Directories-in-Command-Prompt)).
-6. Type `java -jar conTActs.jar` and press Enter. A GUI should appear in a few seconds.
+6. Type `java -jar <filename>.jar` (e.g java -jar conTAct.jar) and press Enter. A GUI should appear in a few seconds.
+
 
 #### Shutdown
 
@@ -728,6 +729,37 @@ Given below are instructions to test the app manually.
 ---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
+
+Developing **conTAct** required a significant level of effort beyond the original AB3 codebase. While we reused the base logic and UI structure of AB3, approximately **70-80% of the total effort** was spent on extending and adapting the system to suit our Teaching Assistant use case, which is considerably more complex than AB3's single-entity address book.
+
+### Difficulty and Challenges
+
+On top of AB3, conTAct introduced **multiple fields** such as student ID, multiple tutorials per student, and telegram handles. Each of these fields required not only parser and model extensions, but also strict validation logic. A particularly challenging aspect was ensuring the correct handling of optional (`address`, `telegram`) and repeatable fields (`tags`, `tutorials`) and implementing strict format constraints (e.g., student ID structure, email format).
+
+We also implemented a **custom deletion mechanism** based on prefixes and keywords, which required field-specific search and validation logic. This was more complex than AB3’s delete-by-index functionality.
+
+The addition of **file save/load commands**, support for listing all saved files, and custom display filtering through `list [PREFIX]...` significantly increased the complexity of both the logic and UI layers. Furthermore, considerable effort went into **input validation** and user experience design to ensure meaningful and non-disruptive feedback to users.
+
+### Effort Required
+
+In total, the team spent roughly:
+
+- **20–30% of effort adapting AB3's base commands** (`add`, `edit`, `list`, etc.)
+- **50% implementing new features**, such as save/load/files, prefix-based filtering, and enhanced validations
+- **20–30% on documentation, testing, GUI polishing, and bug fixing**
+
+We reused AB3’s command framework, parser structure, and GUI skeleton, but even reused components required extensive modification. For example, the `AddCommandParser.java` and `EditCommandParser.java` were heavily restructured to handle optional and multiple fields like `telegram`, `tags`, and `tutorials`.
+
+One concrete reuse was the use of AB3’s command parsing logic. We extended it significantly with additional validation layers, especially for the `add`, `edit`, and `find` commands. For example, we retained the parser framework but added complex checks for student ID, email format, and phone number constraints in the new utility class `StudentFieldValidator.java`.
+
+### Achievements
+
+- Designed a robust **multi-field CLI application** tailored to a real-world TA use case.
+- Implemented **custom command semantics** (e.g., delete by attribute, list field filtering).
+- Ensured **high extensibility**, allowing for future features like attendance tracking and import/export.
+- Achieved **full test coverage** for critical commands and logic layers.
+
+conTAct, while starting from AB3, evolved into a substantially more complex and polished system. We believe this demonstrates both technical competency and thoughtful software design.
 
 ---------------------------------------------------------------------------------------------------------------------
 
