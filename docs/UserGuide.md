@@ -341,7 +341,7 @@ conTAct app using the `load <file_name>` command.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [tut/TUTORIAL] [a/ADDRESS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague tut/CS2103 a/123, Clementi Rd, 1234665 `
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL [te/TELEGRAM] [t/TAG] [tut/TUTORIAL] [a/ADDRESS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com te/jameshuai t/friend t/colleague tut/CS2103 a/123, Clementi Rd, 1234665 `
 **Clear** | `clear`
 **Delete** | `delete PREFIX KEYWORD`<br> e.g., `delete n/John`, `delete t/friends`, `delete s/A1234567X`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG] [tut/TUTORIAL] [a/ADDRESS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
