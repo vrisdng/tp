@@ -13,6 +13,10 @@ public class TelegramTest {
         // Example: too short (less than 5 characters)
         String invalidTelegram = "abc";
         assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidTelegram));
+
+        // Example: start with underscore
+        String invalidTelegram2 = "_invalidHandle";
+        assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidTelegram2));
     }
 
     @Test

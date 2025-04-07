@@ -68,6 +68,8 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* Students duplicates are checked using student ID. We do not check for uniqueness in other attributes such as email, phone number and telegram handle.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
