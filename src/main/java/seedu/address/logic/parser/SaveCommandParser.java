@@ -17,7 +17,7 @@ public class SaveCommandParser implements Parser<SaveCommand> {
     public SaveCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException("Save command requires a file path as an argument.");
+            throw new ParseException("Save command requires a file name as an argument.");
         }
         return new SaveCommand(trimmedArgs);
     }

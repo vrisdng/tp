@@ -30,7 +30,7 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
    **Linux Users:** Open your Terminal from the Applications menu.
 
 6. Type `java -jar <name_of_file>.jar` in the terminal, and then Enter to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
 7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -68,6 +68,8 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* Students duplicates are checked using student ID. We do not check for uniqueness in other attributes such as email, phone number and telegram handle.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -83,7 +85,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `add`
 
 Adds a student to conTAct.
 
@@ -112,7 +114,7 @@ Examples:
 * `add n/Mai p/12341234 e/student@example.com s/A1234567X t/yapper tut/CS2103 tut/CS2109S`
 * `add n/Mai p/12341234 e/student@example.com s/A1234567X t/inDanger te/mai tut/CS2103 tut/CS2109S a/Kent Ridge Hall`
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
 Shows a list of all persons in conTAct. You can customize the fields displayed in the person cards using prefixes.
 
@@ -137,7 +139,7 @@ Examples:
 
 ![Sample output for 'list n/ e/ t/'](images/listnet.png)
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
 Edits an existing student in conTAct.
 
@@ -158,7 +160,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by attributes: `find`
+### Locating students by attributes: `find`
 
 Finds persons whose fields match any of the given keywords.
 Only one field is allowed in each `find`.
@@ -192,7 +194,7 @@ Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 ![Sample output for 'find tut/CS2103T'](images/FindTut2103T.png)
 
-### Deleting a person or a group of people: `delete`
+### Deleting a student or a group of students: `delete`
 
 Deletes students from the list based on the specified field and value.
 
@@ -244,7 +246,9 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Saving the data manually : `save`
 
-Saves the current address book data to a specified file.
+* Saves the current address book data to a specified file. 
+* The data will be saved in json files, which are stored in the folder `data` in the directory that contains the program's jar file.
+* Please take note that if the user saves to a file that has already existed (E.g. the user previously saved to test.json and now run `save test`), the previously saved version will be replaced with the new versin. Because of this, we advise users to use the `file` command to see all the saved files before saving to prevent duplicates.
 
 Format: `save [FILE_NAME]`
 
@@ -261,6 +265,7 @@ Format: `load [FILE_NAME]`
 
 * The file must be a valid JSON file containing address book data.
 * If the file is not found or the format is invalid, an error message will be displayed, and the current data will remain unchanged.
+* Please take note that once a saved file is loaded, the current addressbook if not saved will be erased. Make sure to save the current addressbook before loading if this is undesirable.
 
 Examples:
 * `load backup` - Loads data from `backup.json`.
@@ -285,9 +290,6 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -320,4 +322,5 @@ Action | Format, Examples
 **List** | `list [PREFIX]...`<br> e.g., `list`, `list n/ p/`, `list n/ e/ t/`
 **Save** | `save FILE_PATH`<br> e.g., `save addressbook`
 **Load** | `load FILE_PATH`<br> e.g., `load addressbook`
+**Files**| `files`
 **Help** | `help`

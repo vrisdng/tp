@@ -10,6 +10,7 @@ public class Telegram {
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram handles should be 5 to 32 characters long and can only "
                     + "contain alphanumeric characters and underscores.\n"
+                    + "Cannot start with an underscore.\n"
                     + "You do not need to include '@'.";
     public final String value;
 
@@ -32,7 +33,7 @@ public class Telegram {
      */
     public static boolean isValidTelegram(String test) {
         requireNonNull(test);
-        return test.isEmpty() || test.matches("^[A-Za-z0-9_]{5,32}$");
+        return test.isEmpty() || test.matches("^[A-Za-z0-9_]{5,32}$") && !test.startsWith("_");
     }
 
     @Override
