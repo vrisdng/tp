@@ -92,7 +92,7 @@ Format: `help`
 
 Adds a student to conTAct.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [te/telegram] [t/TAG]… [tut/TUTORIALS]… [a/ADDRESS]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID te/telegram [t/TAG]… [tut/TUTORIALS]… [a/ADDRESS]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0) and any number of tutorials (including 0).
