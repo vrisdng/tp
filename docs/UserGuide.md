@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: conTAct User Guide
 ---
 
 conTAct **is a desktop app designed to help Teaching Assistants efficiently manage student lists and information.** It’s optimized for fast use via the **Command Line Interface (CLI)**, while still offering the ease of a Graphical User Interface (GUI). If you're comfortable typing commands, conTAct makes tracking students, managing tutorials, and updating records quicker than traditional GUI-based apps.
@@ -109,12 +109,12 @@ Input constraints:<br>
 - Student ID should start with an A, followed by 7 numbers and a capital letter (A-Z).<br>
 - Phone numbers only contain numbers, should be at least 3 digits long, and may include '+', '(', and ')' for country code. E.g: (+65)12341234.<br>
 - Emails should be of the format <local-part>@<domain> and adhere to the following constraints:<br>
-    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-    The domain name must:
-        - end with a domain label at least 2 characters long
-        - have each domain label start and end with alphanumeric characters
-        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br>
+    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br>
+    The domain name must:<br>
+        - end with a domain label at least 2 characters long <br>
+        - have each domain label start and end with alphanumeric characters<br>
+        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br>
 - Telegram should be alphanumeric values or underscores.<br>
 - Tutorial names and tag names should be alphanumeric values, tutorials can have hyphens.<br>
 </div>
@@ -141,7 +141,7 @@ Format: `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL s/STUDENT_ID [te/telegram] [t/
 * You may edit to the exact same information as before.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index refers to the list currently being shown. 
+The index refers to the list currently being shown. (e.g If you type `find n/John Doe` and John Doe appears on the top of the list, typing `edit 1` will edit John Doe's information)
 </div>
 
 
@@ -153,9 +153,8 @@ Examples:
 
 #### Deleting a student or a group of students : `delete`
 
-Format: `delete PREFIX KEYWORD`
-
-DDeletes students from the list based on the specified field and value.
+Deletes students from the list based on the specified field and value.
+Only one field is allowed in each `delete`.
 
 Format: `delete PREFIX KEYWORD`
 
@@ -164,16 +163,14 @@ Format: `delete PREFIX KEYWORD`
 * For fields like `name` and `student ID`, all keywords must match exactly.
 * Supported prefixes and their behavior:
 
-| Prefix | Field         | Behavior                                                                                     | Example                                                                         |
-|--------|---------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| `n/`   | Name          | Matches all keywords in the name field exactly.                                             | `delete n/John Doe` deletes `John Doe` but not `Johnny` or `Jonathan`.          |
-| `p/`   | Phone number  | Matches the phone number exactly.                                                           | `delete p/98765432` deletes the person with phone number `98765432`.            |
-| `e/`   | Email         | Matches the email exactly.                                                                  | `delete e/johnd@example.com` deletes the person with email `johnd@example.com`. |
-| `a/`   | Address       | Matches the address exactly.                                                                | `delete a/311 Clementi Ave 2` deletes the person with that exact address.       |
-| `t/`   | Tags          | Matches the tag exactly.                                                                    | `delete t/friend` deletes all persons tagged as `friend` but not `best-friend`. |
-| `s/`   | Student ID    | Matches the student ID exactly.                                                             | `delete s/A1234567X` deletes the person with student ID `A1234567X`.            |
-| `tut/` | Tutorials     | Matches the tutorial name exactly.                                                          | `delete tut/CS2103T` deletes all persons in the tutorial `CS2103T`.             |
-| `te/`  | Telegram      | Matches the Telegram handle exactly.                                                        | `delete te/johndoe` deletes the person with Telegram handle `@johndoe`.         |
+| Prefix | Field         | Behavior                                                                                     | Example                                                                                     |
+|--------|---------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `n/`   | Name          | Matches all keywords in the name field exactly.                                             | `delete n/John Doe` deletes `John Doe` but not `Johnny` or `Jonathan`.                     |
+| `e/`   | Email         | Matches the email exactly.                                                                  | `delete e/johnd@example.com` deletes the person with email `johnd@example.com`.            |
+| `t/`   | Tags          | Matches the tag exactly.                                                                    | `delete t/friend` deletes all persons tagged as `friend` but not `best-friend`.            |
+| `s/`   | Student ID    | Matches the student ID exactly.                                                             | `delete s/A1234567X` deletes the person with student ID `A1234567X`.                       |
+| `te/`  | Telegram      | Matches the Telegram handle exactly.                                                        | `delete tg/johndoe` deletes the person with Telegram handle `@johndoe`.                    |
+| `tut/` | Tutorials     | Matches the tutorial name exactly.                                                          | `delete tut/CS2103T` deletes all persons in the tutorial `CS2103T`.                        |
 
 Examples:
 * `delete n/John` - Deletes all students with names containing `John`, such as `John Doe`, `Johnny`, and `Johnathan`.
@@ -200,7 +197,7 @@ Format: `clear`
 
 #### Listing all students : `list`
 
-Shows a list of all persons in conTAct. You can customize the fields displayed in the person cards using prefixes.
+Shows a list of all students in conTAct. You can customize the fields displayed in the person cards using prefixes.
 **Note:** This command is for customizing the display of information based on the user's preference and is not meant for searching purposes. If you want to search for specific students, refer to the [`find`](#locating-students-by-attributes-find) command.
 
 Format: `list [PREFIX]...`
@@ -228,13 +225,12 @@ Examples:
 
 #### Locating students by attributes : `find`
 
-Finds persons whose fields match any of the given keywords.  
+Finds students whose fields match any of the given keywords.  
 Only one field is allowed in each `find`.
 
-Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX KEYWORD`
 
 * The search is case-insensitive. e.g., `hans` will match `Hans`.
-* The order of the keywords for name does not matter. e.g., `Hans Bo` will match `Bo Hans`.
 
 | Prefix | Field         | Behavior                                                                                     | Example                                                                                   |
 |--------|---------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
@@ -283,7 +279,7 @@ Format: `load [FILE_NAME]`
 
 * The file must be a valid JSON file containing the required field.
 * If the file is not found or the format is invalid, an error message will be displayed, and the current data will remain unchanged.
-* Please take note that once a saved file is loaded, the current addressbook if not saved will be erased. Make sure to save the current addressbook before loading if this is undesirable.
+* Please take note that once a saved file is loaded, the current data if not saved will be erased. Make sure to save the current data before loading if this is undesirable.
 
 Examples:
 * `load backup` - Loads data from `backup.json`.
@@ -307,8 +303,8 @@ Format: `files`
 conTAct data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, conTAct will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the conTAct to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -316,7 +312,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous conTAct home folder.
 
 Alternatively, save a copy of your data as a `.json` file using the `save <file_name>` command. Then, send the `.json` file directly to the other Computer and load it in the
 conTAct app using the `load <file_name>` command.
@@ -338,10 +334,10 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete PREFIX KEYWORD`<br> e.g., `delete n/John`, `delete t/friends`, `delete s/A1234567X`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG] [tut/TUTORIAL] [a/ADDRESS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/John`, `find t/friend`, `find tut/CS2103T`
+**Find** | `find PREFIX KEYWORD`<br> e.g., `find n/John`, `find t/friend`, `find tut/CS2103T`
 **List** | `list [PREFIX]...`<br> e.g., `list`, `list n/ p/`, `list n/ e/ t/`
-**Save** | `save FILE_PATH`<br> e.g., `save addressbook`
-**Load** | `load FILE_PATH`<br> e.g., `load addressbook`
+**Save** | `save FILE_PATH`<br> e.g., `save test`
+**Load** | `load FILE_PATH`<br> e.g., `load test`
 **Files**| `files`
 **Help** | `help`
 
