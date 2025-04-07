@@ -198,7 +198,7 @@ Format: `clear`
 #### Listing all students : `list`
 
 Shows a list of all students in conTAct. You can customize the fields displayed in the person cards using prefixes.
-**Note:** This command is for customizing the display of information based on the user's preference and is not meant for searching purposes. If you want to search for specific students, refer to the [`find`](#locating-students-by-attributes-find) command.
+**Note:** This command is for customizing the display of information based on the user's preference and is not meant for searching purposes. If you want to search for specific students, refer to the [`find`](#locating-students-by-attributes--find) command.
 
 Format: `list [PREFIX]...`
 
