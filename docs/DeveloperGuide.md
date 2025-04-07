@@ -546,7 +546,7 @@ Given below are instructions to test the app manually.
 3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 4. Open a command terminal (learn how to do so [here](https://www.freecodecamp.org/news/command-line-for-beginners/)).
 5. Type `cd [YOUR_FOLDER_LOCATION]` where `[YOUR_FOLDER_LOCATION]` is the path to the folder containing the jar file. (Learn more [here](https://www.wikihow.com/Change-Directories-in-Command-Prompt)).
-6. Type `java -jar <filename>.jar` (e.g java -jar conTActv1.6.jar) and press Enter. A GUI should appear in a few seconds.
+6. Type `java -jar <filename>.jar` (e.g java -jar conTAct.jar) and press Enter. A GUI should appear in a few seconds.
 
 #### Shutdown
 
