@@ -27,11 +27,13 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
    **Mac Users:** Open *Terminal* from the Launchpad or Spotlight (`Cmd + Space`, then type "Terminal").<br>
    **Linux Users:** Open your Terminal from the Applications menu.
 
-6. Type `java -jar <name_of_file>.jar` (e.g java -jar conTAct.jar) in the terminal, and then Enter to run the application.<br>
+6. Navigate into the folder you put the jar file in using `cd <folder_name>`. (e.g `cd folder`)
+
+7. Type `java -jar <name_of_file>.jar` (e.g java -jar conTAct.jar) in the terminal, and then Enter to run the application.<br>
    A GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -40,7 +42,7 @@ conTAct **is a desktop app designed to help Teaching Assistants efficiently mana
     * `clear` : Deletes all contacts.
     * `exit` : Exits the app.
 
-8. Refer to the [Features](#features) below for details of each command.
+9. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
