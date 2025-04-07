@@ -152,91 +152,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -499,7 +414,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ### Glossary
-### Glossary
 
 | Term                     | Definition                                                                                   |
 |--------------------------|-----------------------------------------------------------------------------------------------|
@@ -543,7 +457,8 @@ Given below are instructions to test the app manually.
 3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 4. Open a command terminal (learn how to do so [here](https://www.freecodecamp.org/news/command-line-for-beginners/)).
 5. Type `cd [YOUR_FOLDER_LOCATION]` where `[YOUR_FOLDER_LOCATION]` is the path to the folder containing the jar file. (Learn more [here](https://www.wikihow.com/Change-Directories-in-Command-Prompt)).
-6. Type `java -jar <filename>.jar` and press Enter. A GUI should appear in a few seconds.
+6. Type `java -jar <filename>.jar` (e.g java -jar conTAct.jar) and press Enter. A GUI should appear in a few seconds.
+
 
 #### Shutdown
 
@@ -578,8 +493,10 @@ Given below are instructions to test the app manually.
       ```  
       **Expected:** A new person is added to conTAct.
     - **Test Case (with optional fields):**
+    
       ```
-      add n/Mai p/12341234 e/student@example.com s/A1234567X t/needs-care tut/CS2103 tut/CS2109S a/Kent Ridge Hall
+      add n/Mai p/12341234 e/student@example.com s/A1234567X 
+      t/needsCare tut/CS2103 tut/CS2109S a/Kent Ridge Hall
       ```  
       **Expected:** The new person is added with tags, tutorials, and an address.
 - **Invalid Input:**
@@ -744,7 +661,7 @@ Given below are instructions to test the app manually.
 
 #### Loading Data
 
-1. **Preparation:** Ensure a valid JSON file (e.g., `example.json`) exists in the default directory (a folder named `data` in the current directory storing the program's jar file). You can run `save example` before this to ensure this.
+1. **Preparation:** Ensure a valid JSON file (e.g., `example.json`) exists in the default directory (a folder named `data` in the current directory storing the program's jar file). You can run `save example` before this to ensure this. Ensure that the person objects in the json file also contains all the attributes of a person (even though some of these attributes might be empty strings) for the load command to work.
 
 2. **Test Case:**
     ```
@@ -808,6 +725,37 @@ Given below are instructions to test the app manually.
 ---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
+
+Developing **conTAct** required a significant level of effort beyond the original AB3 codebase. While we reused the base logic and UI structure of AB3, approximately **70-80% of the total effort** was spent on extending and adapting the system to suit our Teaching Assistant use case, which is considerably more complex than AB3's single-entity address book.
+
+### Difficulty and Challenges
+
+On top of AB3, conTAct introduced **multiple fields** such as student ID, multiple tutorials per student, and telegram handles. Each of these fields required not only parser and model extensions, but also strict validation logic. A particularly challenging aspect was ensuring the correct handling of optional (`address`, `telegram`) and repeatable fields (`tags`, `tutorials`) and implementing strict format constraints (e.g., student ID structure, email format).
+
+We also implemented a **custom deletion mechanism** based on prefixes and keywords, which required field-specific search and validation logic. This was more complex than AB3’s delete-by-index functionality.
+
+The addition of **file save/load commands**, support for listing all saved files, and custom display filtering through `list [PREFIX]...` significantly increased the complexity of both the logic and UI layers. Furthermore, considerable effort went into **input validation** and user experience design to ensure meaningful and non-disruptive feedback to users.
+
+### Effort Required
+
+In total, the team spent roughly:
+
+- **20–30% of effort adapting AB3's base commands** (`add`, `edit`, `list`, etc.)
+- **50% implementing new features**, such as save/load/files, prefix-based filtering, and enhanced validations
+- **20–30% on documentation, testing, GUI polishing, and bug fixing**
+
+We reused AB3’s command framework, parser structure, and GUI skeleton, but even reused components required extensive modification. For example, the `AddCommandParser.java` and `EditCommandParser.java` were heavily restructured to handle optional and multiple fields like `telegram`, `tags`, and `tutorials`.
+
+One concrete reuse was the use of AB3’s command parsing logic. We extended it significantly with additional validation layers, especially for the `add`, `edit`, and `find` commands. For example, we retained the parser framework but added complex checks for student ID, email format, and phone number constraints in the new utility class `StudentFieldValidator.java`.
+
+### Achievements
+
+- Designed a robust **multi-field CLI application** tailored to a real-world TA use case.
+- Implemented **custom command semantics** (e.g., delete by attribute, list field filtering).
+- Ensured **high extensibility**, allowing for future features like attendance tracking and import/export.
+- Achieved **full test coverage** for critical commands and logic layers.
+
+conTAct, while starting from AB3, evolved into a substantially more complex and polished system. We believe this demonstrates both technical competency and thoughtful software design.
 
 ---------------------------------------------------------------------------------------------------------------------
 
