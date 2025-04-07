@@ -152,10 +152,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -832,4 +828,10 @@ in the format of a course code (e.g CS2103T). We plan to improve it by making it
 command to delete the student, the app will display a blank list. We plan to update it to display the whole list after
 the delete command is called.<br>
 
+4. **Delete command improvements**: If a student is enrolled in multiple tutorials (or has multiple tags), deleting a specific tutorial (or tag) will only remove that tutorial (or tag) from the student's record. However, if the student is enrolled in only one tutorial (or has only one tag), deleting that tutorial (or tag) will result in the deletion of the student from the list.
 
+5. **Ensure uniqueness of phone number and Telegram handle**: When using the `add` command to add a student or the `load` command to load a `.json` file, we plan to implement a check to ensure that phone numbers and Telegram handles are unique across all students.
+
+6. **Remove gaps in the GUI**: When using the `list` command with only specific fields or the `add` command to add a student with missing optional fields, the gap in the student card should be removed to ensure a cleaner and more consistent display.
+
+7. **Allow special characters in names**: Enable the use of special characters such as `/` to accommodate names with `S/O` or `D/O`, as well as names in other languages that include special characters.
