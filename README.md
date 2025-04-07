@@ -10,5 +10,5 @@
 * It is written in OOP fashion.
 * It is named _conTAct_, specially for Teaching Assistants.
 * It comes with a **reasonable level of user and developer documentation**.
-* For the detailed documentation of this project, see the **[conTActs Product Website](https://ay2425s2-cs2103t-f14-1.github.io/tp/UserGuide.html)**.
+* For the detailed documentation of this project, see the **[conTAct Product Website](https://ay2425s2-cs2103t-f14-1.github.io/tp/UserGuide.html)**.
 * If you would like to contribute code to this project, fork and create a pull request.
